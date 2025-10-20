@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid mx-4">
+        <div className="container-fluid mx-4 py-1">
           <a className="navbar-brand" href="#">
             <img src={logo} alt="" />
           </a>
@@ -45,6 +45,33 @@ const NavBar = () => {
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Brands
+                </a>
+              </li>
+            </ul>
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item mx-2">
+                <a
+                  type="button"
+                  className="btn position-relative"
+                  href="/wishlist"
+                >
+                  <i className="fa-regular fa-heart"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    9<span className="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </li>
+              <li className="nav-item mx-2">
+                <a type="button" className="btn position-relative" href="/cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    5<span className="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" aria-current="page" href="#">
+                  Logout
                 </a>
               </li>
             </ul>
