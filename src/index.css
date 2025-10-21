@@ -49,3 +49,8 @@ a:hover {
 .bg-main-light {
   background-color: var(--light-color) !important;
 }
+
+.navbar-nav .nav-link.active {
+  color: #0aad0a !important;
+  font-weight: bolder;
+}

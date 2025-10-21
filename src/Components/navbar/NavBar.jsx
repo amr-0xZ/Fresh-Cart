@@ -1,14 +1,15 @@
 import React from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid mx-4 py-1">
-          <a className="navbar-brand" href="#">
+          <NavLink className="navbar-brand" to="/">
             <img src={logo} alt="" />
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,56 +24,60 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <NavLink className="nav-link" aria-current="page" to="/home">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/cart">
                   Cart
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/products">
                   Products
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/categories">
                   Categories
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/brands">
                   Brands
-                </a>
+                </NavLink>
               </li>
             </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item mx-2">
-                <a
+                <NavLink
                   type="button"
                   className="btn position-relative"
-                  href="/wishlist"
+                  to="/wishlist"
                 >
                   <i className="fa-regular fa-heart"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     9<span className="visually-hidden">unread messages</span>
                   </span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item mx-2">
-                <a type="button" className="btn position-relative" href="/cart">
+                <NavLink
+                  type="button"
+                  className="btn position-relative"
+                  to="/cart"
+                >
                   <i class="fa-solid fa-cart-shopping"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     5<span className="visually-hidden">unread messages</span>
                   </span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <NavLink className="nav-link" aria-current="page" to="/login">
                   Logout
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
