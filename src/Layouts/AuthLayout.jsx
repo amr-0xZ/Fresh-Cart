@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import logo from "../assets/images/freshcart-logo.svg";
 import { NavLink } from "react-router-dom";
+import Footer from "../Components/footer/Footer";
 
 const AuthLayout = () => {
   return (
@@ -39,6 +40,7 @@ const AuthLayout = () => {
         </div>
       </nav>
       <Outlet />
+      <Footer />
     </>
   );
 };
