@@ -8,7 +8,7 @@ import paypalLogo from "../../assets/images/PayPal.svg";
 
 function Footer() {
   return (
-    <footer className="bg-light py-5 align-content-center">
+    <footer className="bg-light py-5 mt-5 align-content-center">
       <div className="container px-0">
         {/* Top Section: App Download */}
         <div className="row gy-4 align-items-center">
@@ -27,7 +27,10 @@ function Footer() {
                 placeholder="Email .."
                 aria-label="Email"
               />
-              <button className="btn btn-success flex-shrink-0" type="submit">
+              <button
+                className="btn bg-main text-white flex-shrink-0"
+                type="submit"
+              >
                 Share App Link
               </button>
             </form>
