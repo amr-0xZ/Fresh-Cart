@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import MainLayout from "./Layouts/MainLayout";
 import Home from "./Components/home/Home";
 import Cart from "./Components/cart/Cart";
@@ -37,7 +38,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={routs} />;
+  return (
+    <>
+      <RouterProvider router={routs} />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;

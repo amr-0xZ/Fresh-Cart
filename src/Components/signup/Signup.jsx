@@ -1,8 +1,12 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navegate = useNavigate();
   const validate = Yup.object().shape({
     name: Yup.string().min(3).max(20).required(),
     email: Yup.string().required().email(),
@@ -15,9 +19,6 @@ const Signup = () => {
     rePassword: Yup.string()
       .oneOf([Yup.ref("password")], "rePassword and password must be the same")
       .required(),
-    phone: Yup.string()
-      .matches(/^01(?:0|1|2|5)\d{8}$/, "Enter a valid phone number")
-      .required(),
   });
 
   const register = useFormik({
@@ -26,15 +27,26 @@ const Signup = () => {
       email: "",
       password: "",
       rePassword: "",
-      phone: "",
     },
     validationSchema: validate,
     onSubmit: (values) => {
-      console.log(values);
+      sendData(values);
     },
   });
 
-  console.log(register.errors);
+  function sendData(values) {
+    axios
+      .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
+      .then((data) => {
+        if (data.statusText == "Created") {
+          toast.success("Account created successfully");
+          navegate("/login");
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  }
 
   return (
     <>
@@ -129,28 +141,6 @@ const Signup = () => {
             <div className="alert alert-danger">
               {register.errors.rePassword}
             </div>
-          ) : (
-            ""
-          )}
-
-          <label htmlFor="Phone">Phone:</label>
-          <input
-            onChange={register.handleChange}
-            onBlur={register.handleBlur}
-            className={`mb-3 form-control ${
-              register.errors.phone && register.touched.phone
-                ? "is-invalid"
-                : ""
-            } ${
-              !register.errors.phone && register.touched.phone ? "is-valid" : ""
-            }`}
-            value={register.values.phone}
-            name="phone"
-            type="tel"
-            id="Phone"
-          />
-          {register.errors.phone && register.touched.phone ? (
-            <div className="alert alert-danger">{register.errors.phone}</div>
           ) : (
             ""
           )}
