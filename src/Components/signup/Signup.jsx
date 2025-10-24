@@ -1,30 +1,24 @@
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import React from "react";
 
 const Signup = () => {
-  function validate(values) {
-    const myErrors = {};
-
-    if (!values.name) {
-      myErrors.name = "Your name is required.";
-    }
-    if (!values.email) {
-      myErrors.email = "Your email is required.";
-    }
-    if (!values.password) {
-      myErrors.password = "Password is required.";
-    }
-    if (!values.rePassword) {
-      myErrors.rePassword = "re enter the password.";
-    } else if (values.password !== values.rePassword) {
-      myErrors.rePassword = "Password and rePassword must match.";
-    }
-    if (!values.phone) {
-      myErrors.phone = "Phone number is required.";
-    }
-
-    return myErrors;
-  }
+  const validate = Yup.object().shape({
+    name: Yup.string().min(3).max(20).required(),
+    email: Yup.string().required().email(),
+    password: Yup.string()
+      .matches(
+        /^[A-Z][a-zA-Z0-9]{6,}$/,
+        "The password must: Start with capital letter ,  7 characters long at least , Ends with a dolar sign $"
+      )
+      .required(),
+    rePassword: Yup.string()
+      .oneOf([Yup.ref("password")], "rePassword and password must be the same")
+      .required(),
+    phone: Yup.string()
+      .matches(/^01(?:0|1|2|5)\d{8}$/, "Enter a valid phone number")
+      .required(),
+  });
 
   const register = useFormik({
     initialValues: {
@@ -34,7 +28,7 @@ const Signup = () => {
       rePassword: "",
       phone: "",
     },
-    validate,
+    validationSchema: validate,
     onSubmit: (values) => {
       console.log(values);
     },
