@@ -53,8 +53,6 @@ const Login = () => {
               register.errors.email && register.touched.email
                 ? "is-invalid"
                 : ""
-            } ${
-              !register.errors.email && register.touched.email ? "is-valid" : ""
             }`}
             value={register.values.email}
             name="email"
@@ -74,10 +72,6 @@ const Login = () => {
             className={`mb-3 form-control ${
               register.errors.password && register.touched.password
                 ? "is-invalid"
-                : ""
-            } ${
-              !register.errors.password && register.touched.password
-                ? "is-valid"
                 : ""
             }`}
             value={register.values.password}

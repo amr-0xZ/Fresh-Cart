@@ -8,8 +8,8 @@ import paypalLogo from "../../assets/images/PayPal.svg";
 
 function Footer() {
   return (
-    <footer className="bg-light py-5 mt-5 align-content-center">
-      <div className="container px-0">
+    <footer className="bg-light py-5 mt-5 d-flex justify-content-center">
+      <div className=" px-2 w-100 mx-4">
         {/* Top Section: App Download */}
         <div className="row gy-4 align-items-center">
           <div className="col-lg-6">
