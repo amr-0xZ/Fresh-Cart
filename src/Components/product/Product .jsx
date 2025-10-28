@@ -5,7 +5,7 @@ const Product = ({ item }) => {
   return (
     <div className="col-md-2 my-2">
       <div className="product cursor-pointer rounded-3 p-3">
-        <Link to={"/guest/product/" + item._id}>
+        <Link to={"/product/" + item._id}>
           <img className="w-100 mb-2" src={item.imageCover} alt="" />
           <span className="text-main font-sm mt-2">{item.category.name}</span>
           <h6 className="mt-2">

@@ -49,7 +49,7 @@ const ProtectedRoutes = ({ children }) => {
     return children;
   } else {
     localStorage.clear("token");
-    return <Navigate to={"/guest/home"} />;
+    return <Navigate to={"/guest/login"} />;
   }
 };
 

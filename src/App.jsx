@@ -52,6 +52,7 @@ function App() {
           path: "wishlist",
           element: <Wishlist />,
         },
+        { path: "product/:id", element: <ProductDetails /> },
         {
           path: "*",
           element: <NotFound />,
@@ -84,7 +85,6 @@ function App() {
         },
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
-        { path: "product/:id", element: <ProductDetails /> },
         {
           path: "*",
           element: <NotFound />,
