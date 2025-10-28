@@ -41,7 +41,7 @@ const ProtectedRoutes = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="my-xl-5 d-flex justify-content-center mx-auto ">
+      <div className="h-100 d-flex justify-content-center align-items-center mx-auto ">
         <div className="row gy-4 mt-lg-4">
           <PropagateLoader color="#0aad0a" />
         </div>
@@ -50,7 +50,6 @@ const ProtectedRoutes = ({ children }) => {
   } else if (isAuthed) {
     return children;
   } else {
-    toast.info("You need to login first");
     localStorage.clear("token");
     return <Navigate to={"/guest/home"} />;
   }
