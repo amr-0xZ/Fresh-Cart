@@ -22,12 +22,10 @@ const ProtectedRoutes = ({ children }) => {
           },
         })
         .then((data) => {
-          console.log(data);
           setIsAuthed(true);
           setIsLoading(false);
         })
         .catch((err) => {
-          console.log(err);
           setIsLoading(false);
           setIsAuthed(false);
           localStorage.clear("token");
