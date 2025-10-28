@@ -74,8 +74,10 @@ const NavBar = () => {
                 <NavLink
                   className="nav-link"
                   aria-current="page"
-                  to="/login"
-                  // onClick={localStorage.clear("token")}
+                  to="/guest/home"
+                  onClick={() => {
+                    localStorage.clear("token");
+                  }}
                 >
                   Logout
                 </NavLink>

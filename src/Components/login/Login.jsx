@@ -6,9 +6,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  useEffect(() => {
-    localStorage.clear("token");
-  }, []);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),

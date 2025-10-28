@@ -17,80 +17,76 @@ function App() {
   const routs = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <ProtectedRoutes>
+          <MainLayout />
+        </ProtectedRoutes>
+      ),
       children: [
         {
           index: true,
-          element: (
-            <ProtectedRoutes>
-              <Home />
-            </ProtectedRoutes>
-          ),
+          element: <Home />,
         },
         {
           path: "home",
-          element: (
-            <ProtectedRoutes>
-              <Home />
-            </ProtectedRoutes>
-          ),
+          element: <Home />,
         },
         {
           path: "cart",
-          element: (
-            <ProtectedRoutes>
-              <Cart />
-            </ProtectedRoutes>
-          ),
+          element: <Cart />,
         },
         {
           path: "products",
-          element: (
-            <ProtectedRoutes>
-              <Products />
-            </ProtectedRoutes>
-          ),
+          element: <Products />,
         },
         {
           path: "categories",
-          element: (
-            <ProtectedRoutes>
-              <Categories />
-            </ProtectedRoutes>
-          ),
+          element: <Categories />,
         },
         {
           path: "brands",
-          element: (
-            <ProtectedRoutes>
-              <Brands />
-            </ProtectedRoutes>
-          ),
+          element: <Brands />,
         },
         {
           path: "wishlist",
-          element: (
-            <ProtectedRoutes>
-              <Wishlist />
-            </ProtectedRoutes>
-          ),
+          element: <Wishlist />,
         },
         {
           path: "*",
-          element: (
-            <ProtectedRoutes>
-              <NotFound />
-            </ProtectedRoutes>
-          ),
+          element: <NotFound />,
         },
       ],
     },
     {
-      path: "/",
+      path: "/guest",
       element: <AuthLayout />,
       children: [
-        { path: "/login", element: <Login /> },
-        { path: "/signup", element: <Signup /> },
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "home",
+          element: <Home />,
+        },
+        {
+          path: "products",
+          element: <Products />,
+        },
+        {
+          path: "categories",
+          element: <Categories />,
+        },
+        {
+          path: "brands",
+          element: <Brands />,
+        },
+        { path: "login", element: <Login /> },
+        { path: "signup", element: <Signup /> },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
       ],
     },
   ]);

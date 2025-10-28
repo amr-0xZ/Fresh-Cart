@@ -9,7 +9,7 @@ const AuthLayout = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid mx-4 py-1">
-          <NavLink className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/guest">
             <img src={logo} alt="" />
           </NavLink>
           <button
@@ -24,14 +24,48 @@ const AuthLayout = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/guest/home"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/guest/products">
+                  Products
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/guest/categories">
+                  Categories
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/guest/brands">
+                  Brands
+                </NavLink>
+              </li>
+            </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/login">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/guest/login"
+                >
                   Login
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/signup">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/guest/signup"
+                >
                   Signup
                 </NavLink>
               </li>

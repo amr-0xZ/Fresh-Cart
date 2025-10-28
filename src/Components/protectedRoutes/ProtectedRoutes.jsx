@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, CSSProperties } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { PropagateLoader } from "react-spinners";
 
 const ProtectedRoutes = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,11 +40,19 @@ const ProtectedRoutes = ({ children }) => {
   }, [localStorage.getItem("token")]);
 
   if (isLoading) {
-    return <>Loading</>;
+    return (
+      <div className="my-xl-5 d-flex justify-content-center mx-auto ">
+        <div className="row gy-4 mt-lg-4">
+          <PropagateLoader color="#0aad0a" />
+        </div>
+      </div>
+    );
   } else if (isAuthed) {
     return children;
   } else {
-    return <Navigate to={"/login"} />;
+    toast.info("You need to login first");
+    localStorage.clear("token");
+    return <Navigate to={"/guest/home"} />;
   }
 };
 
