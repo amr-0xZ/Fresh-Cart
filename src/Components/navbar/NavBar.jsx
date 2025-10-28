@@ -29,11 +29,6 @@ const NavBar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/cart">
-                  Cart
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink className="nav-link" to="/products">
                   Products
                 </NavLink>
@@ -56,26 +51,32 @@ const NavBar = () => {
                   className="btn position-relative"
                   to="/wishlist"
                 >
-                  <i className="fa-regular fa-heart"></i>
+                  Wishlist<i className="fa-regular fa-heart ms-1"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     9<span className="visually-hidden">unread messages</span>
                   </span>
                 </NavLink>
               </li>
+
               <li className="nav-item mx-2">
                 <NavLink
                   type="button"
                   className="btn position-relative"
                   to="/cart"
                 >
-                  <i class="fa-solid fa-cart-shopping"></i>
+                  Cart<i className="fa-solid fa-cart-shopping ms-1"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     5<span className="visually-hidden">unread messages</span>
                   </span>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/login">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/login"
+                  // onClick={localStorage.clear("token")}
+                >
                   Logout
                 </NavLink>
               </li>

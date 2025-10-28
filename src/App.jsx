@@ -11,6 +11,7 @@ import NotFound from "./Components/notfound/NotFound";
 import AuthLayout from "./Layouts/AuthLayout";
 import Login from "./Components/login/Login";
 import Signup from "./Components/signup/Signup";
+import ProtectedRoutes from "./Components/protectedRoutes/ProtectedRoutes";
 
 function App() {
   const routs = createBrowserRouter([
@@ -18,14 +19,70 @@ function App() {
       path: "/",
       element: <MainLayout />,
       children: [
-        { index: true, element: <Home /> },
-        { path: "home", element: <Home /> },
-        { path: "cart", element: <Cart /> },
-        { path: "products", element: <Products /> },
-        { path: "categories", element: <Categories /> },
-        { path: "brands", element: <Brands /> },
-        { path: "wishlist", element: <Wishlist /> },
-        { path: "*", element: <NotFound /> },
+        {
+          index: true,
+          element: (
+            <ProtectedRoutes>
+              <Home />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "home",
+          element: (
+            <ProtectedRoutes>
+              <Home />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "cart",
+          element: (
+            <ProtectedRoutes>
+              <Cart />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "products",
+          element: (
+            <ProtectedRoutes>
+              <Products />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "categories",
+          element: (
+            <ProtectedRoutes>
+              <Categories />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "brands",
+          element: (
+            <ProtectedRoutes>
+              <Brands />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "wishlist",
+          element: (
+            <ProtectedRoutes>
+              <Wishlist />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "*",
+          element: (
+            <ProtectedRoutes>
+              <NotFound />
+            </ProtectedRoutes>
+          ),
+        },
       ],
     },
     {

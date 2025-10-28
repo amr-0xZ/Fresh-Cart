@@ -2,10 +2,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  useEffect(() => {
+    localStorage.clear("token");
+  }, []);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -30,12 +33,15 @@ const Login = () => {
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
       .then((data) => {
         if (data.status == 200) {
-          // console.log(data);
+          console.log(data.data.token);
+          // console.log(data.data.token);
+
+          localStorage.setItem("token", data.data.token);
           navegate("/home");
         }
       })
       .catch((err) => {
-        // console.log(err.response.data.message);
+        console.log(err);
         toast.error(err.response.data.message);
       });
   }
