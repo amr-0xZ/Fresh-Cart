@@ -11,6 +11,7 @@ const Products = () => {
   let { data, isLoading } = useQuery({
     queryKey: ["getProducts"],
     queryFn: getProducts,
+    gcTime: 30 * 60 * 1000,
   });
 
   if (isLoading) {

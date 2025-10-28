@@ -12,6 +12,7 @@ import AuthLayout from "./Layouts/AuthLayout";
 import Login from "./Components/login/Login";
 import Signup from "./Components/signup/Signup";
 import ProtectedRoutes from "./Components/protectedRoutes/ProtectedRoutes";
+import ProductDetails from "./Components/productDetails/ProductDetails";
 
 function App() {
   const routs = createBrowserRouter([
@@ -83,6 +84,7 @@ function App() {
         },
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
+        { path: "product/:id", element: <ProductDetails /> },
         {
           path: "*",
           element: <NotFound />,
