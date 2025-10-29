@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { appContext } from "../../Contexts/AppContext";
 
 const Product = ({ item }) => {
+  let { authed, cartCounter, setCartCounter } = useContext(appContext);
+  let productPath = authed ? "/product/" : "/guest/product/";
+
   return (
     <div className="col-md-2 my-2">
       <div className="product cursor-pointer rounded-3 p-3">
-        <Link to={"/product/" + item._id}>
+        <Link to={productPath + item._id}>
           <img className="w-100 mb-2" src={item.imageCover} alt="" />
           <span className="text-main font-sm mt-2">{item.category.name}</span>
           <h6 className="mt-2">
@@ -19,9 +23,18 @@ const Product = ({ item }) => {
             </div>
           </div>
         </Link>
-        <button className="btn bg-main text-white w-100 mt-2">
-          Add to cart
-        </button>
+        {authed ? (
+          <button
+            className="btn bg-main text-white w-100 mt-2"
+            onClick={() => {
+              setCartCounter(cartCounter + 1);
+            }}
+          >
+            Add to cart
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

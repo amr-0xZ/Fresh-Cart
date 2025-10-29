@@ -2,10 +2,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { appContext } from "../../Contexts/AppContext";
 
 const Login = () => {
+  let { setAuthed } = useContext(appContext);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -30,15 +32,16 @@ const Login = () => {
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
       .then((data) => {
         if (data.status == 200) {
-          console.log(data.data.token);
+          // console.log(data.data.token);
           // console.log(data.data.token);
 
           localStorage.setItem("token", data.data.token);
+          setAuthed(true);
           navegate("/home");
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.error(err.response.data.message);
       });
   }

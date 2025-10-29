@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
+import { appContext } from "../../Contexts/AppContext";
 
 const ProductDetails = () => {
   let params = useParams();
+  let { authed, cartCounter, setCartCounter } = useContext(appContext);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  let linkPath = authed ? "" : "/guest/login";
 
   async function getProduct() {
     let data = await axios.get(
@@ -48,9 +51,17 @@ const ProductDetails = () => {
                 {product.ratingsAverage}
               </div>
             </div>
-            <button className="btn bg-main text-white w-100 mt-4">
-              Add to cart
-            </button>
+            <Link
+              className="btn bg-main text-white w-100 mt-4"
+              to={linkPath}
+              onClick={() => {
+                if (authed) {
+                  setCartCounter(cartCounter + 1);
+                }
+              }}
+            >
+              {authed ? "Add to cart" : "Login to buy"}
+            </Link>
           </div>
         </div>
       </div>

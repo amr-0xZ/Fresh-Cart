@@ -13,6 +13,7 @@ import Login from "./Components/login/Login";
 import Signup from "./Components/signup/Signup";
 import ProtectedRoutes from "./Components/protectedRoutes/ProtectedRoutes";
 import ProductDetails from "./Components/productDetails/ProductDetails";
+import AppContext from "./Contexts/AppContext";
 
 function App() {
   const routs = createBrowserRouter([
@@ -83,6 +84,7 @@ function App() {
           path: "brands",
           element: <Brands />,
         },
+        { path: "product/:id", element: <ProductDetails /> },
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
         {
@@ -95,7 +97,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={routs} />
+      <AppContext>
+        <RouterProvider router={routs} />
+      </AppContext>
       <ToastContainer />
     </>
   );
