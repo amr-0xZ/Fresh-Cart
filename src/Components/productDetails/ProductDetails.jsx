@@ -2,14 +2,24 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
-import { appContext } from "../../Contexts/AppContext";
+import { authContext } from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
+import { cartContext } from "../../Contexts/CartContext";
 
 const ProductDetails = () => {
   let params = useParams();
-  let { authed, cartCounter, setCartCounter } = useContext(appContext);
+  let { authed } = useContext(authContext);
+  let { addToCart } = useContext(cartContext);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  let linkPath = authed ? "" : "/guest/login";
+
+  async function addProductToCart(id) {
+    let data = await addToCart(id);
+    console.log(data);
+    toast.success(
+      product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+    );
+  }
 
   async function getProduct() {
     let data = await axios.get(
@@ -51,17 +61,23 @@ const ProductDetails = () => {
                 {product.ratingsAverage}
               </div>
             </div>
-            <Link
-              className="btn bg-main text-white w-100 mt-4"
-              to={linkPath}
-              onClick={() => {
-                if (authed) {
-                  setCartCounter(cartCounter + 1);
-                }
-              }}
-            >
-              {authed ? "Add to cart" : "Login to buy"}
-            </Link>
+            {authed ? (
+              <button
+                className="btn bg-main text-white w-100 mt-4"
+                onClick={() => {
+                  addProductToCart(product._id);
+                }}
+              >
+                Add to cart
+              </button>
+            ) : (
+              <Link
+                className="btn bg-main text-white w-100 mt-4"
+                to={"/guest/login"}
+              >
+                Login to buy
+              </Link>
+            )}
           </div>
         </div>
       </div>

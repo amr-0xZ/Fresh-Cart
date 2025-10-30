@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { PropagateLoader } from "react-spinners";
-import { appContext } from "../../Contexts/AppContext";
+import { authContext } from "../../Contexts/AuthContext";
 
 const ProtectedRoutes = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  let { authed, setAuthed } = useContext(appContext);
+  let { authed, setAuthed } = useContext(authContext);
   const token = localStorage.getItem("token");
 
   const verify = async (token) => {

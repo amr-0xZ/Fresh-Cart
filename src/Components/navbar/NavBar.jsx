@@ -1,10 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { NavLink } from "react-router-dom";
-import { appContext } from "../../Contexts/AppContext";
+import { authContext } from "../../Contexts/AuthContext";
+import { cartContext } from "../../Contexts/CartContext";
+import axios from "axios";
 
 const NavBar = () => {
-  let { setAuthed, cartCounter } = useContext(appContext);
+  let { setAuthed } = useContext(authContext);
+  let { cartCount, fitchCartCount } = useContext(cartContext);
+
+  useEffect(() => {
+    fitchCartCount();
+  }, []);
 
   return (
     <>
@@ -69,7 +76,7 @@ const NavBar = () => {
                 >
                   Cart<i className="fa-solid fa-cart-shopping ms-1"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {cartCounter > 0 && cartCounter}
+                    {cartCount > 0 && cartCount}
                   </span>
                 </NavLink>
               </li>

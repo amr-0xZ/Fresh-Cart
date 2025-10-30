@@ -13,7 +13,8 @@ import Login from "./Components/login/Login";
 import Signup from "./Components/signup/Signup";
 import ProtectedRoutes from "./Components/protectedRoutes/ProtectedRoutes";
 import ProductDetails from "./Components/productDetails/ProductDetails";
-import AppContext from "./Contexts/AppContext";
+import AuthContext from "./Contexts/AuthContext";
+import CartContext from "./Contexts/CartContext";
 
 function App() {
   const routs = createBrowserRouter([
@@ -97,10 +98,12 @@ function App() {
 
   return (
     <>
-      <AppContext>
-        <RouterProvider router={routs} />
-      </AppContext>
-      <ToastContainer />
+      <AuthContext>
+        <CartContext>
+          <RouterProvider router={routs} />
+        </CartContext>
+      </AuthContext>
+      <ToastContainer autoClose={2000} />
     </>
   );
 }

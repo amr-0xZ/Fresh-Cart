@@ -4,10 +4,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { appContext } from "../../Contexts/AppContext";
+import { authContext } from "../../Contexts/AuthContext";
 
 const Login = () => {
-  let { setAuthed } = useContext(appContext);
+  let { setAuthed } = useContext(authContext);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),

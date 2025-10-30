@@ -1,10 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { appContext } from "../../Contexts/AppContext";
+import { authContext } from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
+import { cartContext } from "../../Contexts/CartContext";
 
 const Product = ({ item }) => {
-  let { authed, cartCounter, setCartCounter } = useContext(appContext);
+  let { authed } = useContext(authContext);
+  let { addToCart } = useContext(cartContext);
   let productPath = authed ? "/product/" : "/guest/product/";
+
+  async function addProductToCart(id) {
+    let data = await addToCart(id);
+    console.log(data);
+    toast.success(
+      item.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+    );
+  }
 
   return (
     <div className="col-md-2 my-2">
@@ -27,7 +38,7 @@ const Product = ({ item }) => {
           <button
             className="btn bg-main text-white w-100 mt-2"
             onClick={() => {
-              setCartCounter(cartCounter + 1);
+              addProductToCart(item._id);
             }}
           >
             Add to cart
