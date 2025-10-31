@@ -8,12 +8,13 @@ const CartContext = ({ children }) => {
   let [cartCount, setCartCount] = useState(0);
 
   function fitchCartCount() {
-    axios
+    return axios
       .get("https://ecommerce.routemisr.com/api/v1/cart", {
         headers: { token: localStorage.getItem("token") },
       })
       .then(({ data }) => {
         setCartCount(data.numOfCartItems);
+        return data;
       })
       .catch(({ err }) => {
         toast.error(err.massage);

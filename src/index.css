@@ -54,3 +54,7 @@ a:hover {
   color: #0aad0a !important;
   font-weight: bolder;
 }
+
+.border-main {
+  border: #0aad0a 1px solid !important;
+}
