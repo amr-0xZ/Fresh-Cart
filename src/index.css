@@ -43,6 +43,12 @@ a:hover {
 .text-main {
   color: var(--main-color);
 }
+.text-redd {
+  color: rgb(255, 0, 0);
+}
+.pg-redd {
+  background-color: rgb(255, 0, 0) !important;
+}
 .bg-main {
   background-color: var(--main-color) !important;
 }

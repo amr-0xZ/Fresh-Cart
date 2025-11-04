@@ -33,12 +33,63 @@ const CartContext = ({ children }) => {
         return data;
       })
       .catch(({ err }) => {
-        toast.error(err.massage);
+        console.log(err);
+      });
+  }
+
+  function oneLessItem(productId, currentCount) {
+    let count = currentCount - 1;
+    return axios
+      .put(
+        `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
+        { count },
+        { headers: { token: localStorage.getItem("token") } }
+      )
+      .then(({ data }) => {
+        return data;
+      })
+      .catch(({ err }) => {
+        console.log(err);
+      });
+  }
+
+  function removeProduct(productId) {
+    return axios
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, {
+        headers: { token: localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        return data;
+      })
+      .catch(({ err }) => {
+        console.log(err);
+      });
+  }
+
+  function clearCart() {
+    return axios
+      .delete("https://ecommerce.routemisr.com/api/v1/cart", {
+        headers: { token: localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        return data;
+      })
+      .catch(({ err }) => {
+        console.log(err);
       });
   }
 
   return (
-    <cartContext.Provider value={{ cartCount, fitchCartCount, addToCart }}>
+    <cartContext.Provider
+      value={{
+        cartCount,
+        fitchCartCount,
+        addToCart,
+        oneLessItem,
+        removeProduct,
+        clearCart,
+      }}
+    >
       {children}
     </cartContext.Provider>
   );
