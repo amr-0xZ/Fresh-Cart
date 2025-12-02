@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PropagateLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { data } from "react-router-dom";
 
@@ -42,12 +43,18 @@ const Categories = () => {
     return (
       <>
         <div className="container w-75 mt-4">
-          <div className="row my-3">
+          <div className="row my-5  d-flex justify-content-center ">
             {categories.data.map((categoriy) => {
               return (
-                <div className="col-md-3 bg-light my-4 p-3 text-center">
-                  <img src={categoriy.image} className="w-100" alt="" />
-                  <h3 className="my-2">{categoriy.name}</h3>
+                <div className="col-md-3 bg-light my-4 p-3 text-center  ">
+                  <Link>
+                    <img
+                      src={categoriy.image}
+                      className="w-100 d-block "
+                      alt=""
+                    />
+                    <h4 className="my-2 d-block">{categoriy.name}</h4>
+                  </Link>
                 </div>
               );
             })}
