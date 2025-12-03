@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { cartContext } from "../../Contexts/CartContext";
 import CartItem from "../cartItem/CartItem";
 import { PropagateLoader } from "react-spinners";
@@ -13,6 +14,7 @@ const Cart = () => {
   async function getCartData() {
     let data = await fitchCartCount();
     setCart(data);
+    console.log(data);
   }
 
   async function emptyCart() {
@@ -75,15 +77,21 @@ const Cart = () => {
               />
             );
           })}
-          <div className="w-25">
+          <div className="d-flex justify-content-between align-items-center w-100 mt-5">
             <button
-              className="btn pg-redd text-white mt-5"
+              className="btn pg-redd text-white"
               onClick={() => {
                 emptyCart();
               }}
             >
-              <i className="fa-solid fa-trash-can"></i> Empty Your Cart
+              <i className="fa-solid fa-trash-can"></i> Empty Cart
             </button>
+            <Link
+              className="btn bg-main text-white"
+              to={`/order/${cart.cartId}`}
+            >
+              <i className="fa-solid fa-check"></i> Create Order
+            </Link>
           </div>
         </div>
       </>

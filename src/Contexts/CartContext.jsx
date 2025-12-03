@@ -14,6 +14,7 @@ const CartContext = ({ children }) => {
       })
       .then(({ data }) => {
         setCartCount(data.numOfCartItems);
+
         return data;
       })
       .catch(({ err }) => {

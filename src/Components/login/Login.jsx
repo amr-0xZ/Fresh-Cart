@@ -33,7 +33,7 @@ const Login = () => {
       .then((data) => {
         if (data.status == 200) {
           // console.log(data.data.token);
-          // console.log(data.data.token);
+          console.log(data);
 
           localStorage.setItem("token", data.data.token);
           setAuthed(true);

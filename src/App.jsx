@@ -15,6 +15,7 @@ import ProtectedRoutes from "./Components/protectedRoutes/ProtectedRoutes";
 import ProductDetails from "./Components/productDetails/ProductDetails";
 import AuthContext from "./Contexts/AuthContext";
 import CartContext from "./Contexts/CartContext";
+import Order from "./Components/order/Order";
 
 function App() {
   const routs = createBrowserRouter([
@@ -55,6 +56,7 @@ function App() {
           element: <Wishlist />,
         },
         { path: "product/:id", element: <ProductDetails /> },
+        { path: "order/:id", element: <Order /> },
         {
           path: "*",
           element: <NotFound />,
