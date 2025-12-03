@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 
 const Login = () => {
@@ -37,7 +37,7 @@ const Login = () => {
 
           localStorage.setItem("token", data.data.token);
           setAuthed(true);
-          navegate("/home");
+          navegate("/home", { replace: true });
         }
       })
       .catch((err) => {
