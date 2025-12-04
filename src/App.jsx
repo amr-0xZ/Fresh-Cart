@@ -56,7 +56,7 @@ function App() {
           path: "wishlist",
           element: <Wishlist />,
         },
-        { path: "/orders", element: <Orders /> },
+        { path: "/allorders", element: <Orders /> },
         { path: "product/:id", element: <ProductDetails /> },
         { path: "order/:id", element: <Order /> },
         {

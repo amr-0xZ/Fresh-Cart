@@ -3,11 +3,13 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
+import { cartContext } from "../../Contexts/CartContext";
 
 const Login = () => {
-  let { setAuthed } = useContext(authContext);
+  let { setAuthed, setUId } = useContext(authContext);
+  let { fitchCartCount } = useContext(cartContext);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),

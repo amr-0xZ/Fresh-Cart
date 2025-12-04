@@ -1,35 +1,18 @@
 import { React, useContext } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 import { cartContext } from "../../Contexts/CartContext";
 
 const Order = () => {
-  let { fitchCartCount } = useContext(cartContext);
-  let navigate = useNavigate();
+  let { visaOrder, cashOrder } = useContext(cartContext);
   let { id } = useParams();
+  let navigate = useNavigate()
   console.log(id);
 
-  function cashOrder(values) {
-    return axios
-      .post(
-        `https://ecommerce.routemisr.com/api/v1/orders/${id}`,
-        { shippingAddress: values },
-        { headers: { token: localStorage.getItem("token") } }
-      )
-      .then(({ data }) => {
-        console.log(data);
-        if (data.status == "success") {
-          fitchCartCount();
-          toast.success("We received you order!");
-          navigate("/orders", { replace: true });
-        }
-      })
-      .catch(({ error }) => {
-        console.log(error);
-      });
+  async function cashPay(params, id) {
+    await cashOrder(params, id)
+    navigate("/allorders", { replace: true });
   }
 
   const validate = Yup.object().shape({
@@ -60,10 +43,10 @@ const Order = () => {
       console.log(values);
       if (values.method == "cash") {
         let { method, ...data } = values;
-        cashOrder(data);
+        cashPay(data, id);
       } else if (values.method == "visa") {
         let { method, ...data } = values;
-        //   visaOrder(data);
+          visaOrder(data, id);
       }
     },
   });

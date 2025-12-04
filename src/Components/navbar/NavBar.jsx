@@ -63,7 +63,19 @@ const NavBar = () => {
                 >
                   Wishlist<i className="fa-regular fa-heart ms-1"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    9<span className="visually-hidden">unread messages</span>
+                    9
+                  </span>
+                </NavLink>
+              </li>
+              <li className="nav-item mx-2">
+                <NavLink
+                  type="button"
+                  className="btn position-relative"
+                  to="/orders"
+                >
+                  Orders<i class="fa-solid fa-receipt"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    9
                   </span>
                 </NavLink>
               </li>
