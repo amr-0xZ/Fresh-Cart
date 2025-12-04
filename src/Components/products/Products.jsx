@@ -16,7 +16,7 @@ const Products = () => {
 
   if (isLoading) {
     return (
-      <div className="h-100 d-flex justify-content-center align-items-center mx-auto ">
+      <div className="min-vh-100 d-flex justify-content-center align-items-center mx-auto ">
         <div className="row gy-4 mt-lg-4">
           <PropagateLoader color="#0aad0a" />
         </div>
@@ -24,7 +24,7 @@ const Products = () => {
     );
   } else {
     return (
-      <>
+      <div className="min-vh-100">
         <div className="container">
           <div className="row">
             {data?.data.data.map((item) => {
@@ -32,7 +32,7 @@ const Products = () => {
             })}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 };

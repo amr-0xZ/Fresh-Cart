@@ -38,7 +38,7 @@ const Cart = () => {
 
   if (loading) {
     return (
-      <div className="h-100 d-flex justify-content-center align-items-center mx-auto ">
+      <div className="min-vh-100 d-flex justify-content-center align-items-center mx-auto ">
         <div className="row gy-4 mt-lg-4">
           <PropagateLoader color="#0aad0a" />
         </div>
@@ -47,6 +47,7 @@ const Cart = () => {
   } else if (empty) {
     return (
       <>
+      <div className="min-vh-100">
         <div className="container w-75 mt-4 bg-light">
           <div className="pb-2">
             <h2>Shop Cart</h2>
@@ -56,11 +57,12 @@ const Cart = () => {
             <h4>Your Cart Is Empty</h4>
           </div>
         </div>
+      </div>
       </>
     );
   } else {
     return (
-      <>
+      <div className="min-vh-100">
         <div className="container w-75 mt-4 bg-light">
           <div className="pb-2">
             <h2>Shop Cart</h2>
@@ -94,7 +96,7 @@ const Cart = () => {
             </Link>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 };

@@ -16,7 +16,7 @@ import ProductDetails from "./Components/productDetails/ProductDetails";
 import AuthContext from "./Contexts/AuthContext";
 import CartContext from "./Contexts/CartContext";
 import Order from "./Components/order/Order";
-import Orders from "./Components/orders/Orders";
+import AllOrders from "./Components/orders/AllOrders";
 
 function App() {
   const routs = createBrowserRouter([
@@ -56,7 +56,7 @@ function App() {
           path: "wishlist",
           element: <Wishlist />,
         },
-        { path: "/allorders", element: <Orders /> },
+        { path: "/allorders", element: <AllOrders /> },
         { path: "product/:id", element: <ProductDetails /> },
         { path: "order/:id", element: <Order /> },
         {

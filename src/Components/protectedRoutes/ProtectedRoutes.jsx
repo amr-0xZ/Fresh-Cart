@@ -1,13 +1,12 @@
-import React, { useEffect, useState, CSSProperties, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { PropagateLoader } from "react-spinners";
 import { authContext } from "../../Contexts/AuthContext";
 
 const ProtectedRoutes = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  let { authed, setAuthed } = useContext(authContext);
+  let { authed, setAuthed, setUId} = useContext(authContext);
   const token = localStorage.getItem("token");
 
   const verify = async (token) => {
@@ -22,9 +21,17 @@ const ProtectedRoutes = ({ children }) => {
             token: token,
           },
         })
-        .then((data) => {
+        .then(({data}) => {
+          if(data.message=="verified"){
+            setAuthed(true);
+            setUId(data.decoded.id);
+            console.log(data.decoded.id);
+            setIsLoading(false);
+            return data
+          }
           setAuthed(true);
           setIsLoading(false);
+          return data
         })
         .catch((err) => {
           setIsLoading(false);
@@ -40,7 +47,7 @@ const ProtectedRoutes = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="h-100 d-flex justify-content-center align-items-center mx-auto ">
+      <div className="min-vh-100 d-flex justify-content-center align-items-center mx-auto ">
         <div className="row gy-4 mt-lg-4">
           <PropagateLoader color="#0aad0a" />
         </div>

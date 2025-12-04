@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { PropagateLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { data } from "react-router-dom";
 
 const Categories = () => {
   let [loading, setLoading] = useState(true);
@@ -33,8 +32,8 @@ const Categories = () => {
 
   if (loading) {
     return (
-      <div className="h-100 d-flex justify-content-center align-items-center mx-auto ">
-        <div className="row gy-4 mt-lg-4">
+      <div className="min-vh-100 d-flex justify-content-center align-items-center mx-auto ">
+        <div className="row gy-4 ">
           <PropagateLoader color="#0aad0a" />
         </div>
       </div>
@@ -42,11 +41,11 @@ const Categories = () => {
   } else {
     return (
       <>
-        <div className="container w-75 mt-4">
+        <div className="container w-75  min-vh-100">
           <div className="row my-5  d-flex justify-content-center ">
             {categories.data.map((categoriy) => {
               return (
-                <div className="col-md-3 bg-light my-4 p-3 text-center  ">
+                <div  className="col-md-3 bg-light my-4 p-3 text-center  ">
                   <Link>
                     <img
                       src={categoriy.image}

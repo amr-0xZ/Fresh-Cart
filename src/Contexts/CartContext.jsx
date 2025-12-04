@@ -1,14 +1,12 @@
 import axios from "axios";
 import React, { useContext, createContext, useState } from "react";
 import { toast } from "react-toastify";
-import { authContext } from "./AuthContext";
-import { useNavigate } from "react-router-dom";
 
 export let cartContext = createContext();
 
 const CartContext = ({ children }) => {
-  let { setUId } = useContext(authContext);
   let [cartCount, setCartCount] = useState(0);
+  let [oerdersCount, setOrdersCount] = useState(0)
 
   function fitchCartCount() {
     return axios
@@ -17,8 +15,6 @@ const CartContext = ({ children }) => {
       })
       .then(({ data }) => {
         setCartCount(data.numOfCartItems);
-        setUId(data.data.cartOwner);
-        console.log(data.data.cartOwner);
         return data;
       })
       .catch(({ err }) => {
@@ -121,17 +117,30 @@ const CartContext = ({ children }) => {
         });
     }
 
+    function userOrders(id){
+      return axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`).then(({data})=>{
+        if(data.length>0){
+          setOrdersCount(data.length)
+        }
+        return data
+      }).catch(({error})=>{
+        return error
+      })
+    }
+
   return (
     <cartContext.Provider
       value={{
         cartCount,
+        oerdersCount,
         fitchCartCount,
         addToCart,
         oneLessItem,
         removeProduct,
         clearCart,
         visaOrder,
-        cashOrder
+        cashOrder,
+        userOrders
       }}
     >
       {children}

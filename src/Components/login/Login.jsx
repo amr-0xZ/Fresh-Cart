@@ -5,11 +5,8 @@ import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
-import { cartContext } from "../../Contexts/CartContext";
-
 const Login = () => {
-  let { setAuthed, setUId } = useContext(authContext);
-  let { fitchCartCount } = useContext(cartContext);
+  let { setAuthed } = useContext(authContext);
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -49,7 +46,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="min-vh-100">
       <div className="w-75 mx-auto my-5">
         <h2>Login To Your Account:</h2>
         <form className="my-4" action="" onSubmit={register.handleSubmit}>
@@ -102,7 +99,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

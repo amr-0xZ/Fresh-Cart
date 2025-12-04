@@ -49,7 +49,7 @@ const Signup = () => {
   }
 
   return (
-    <>
+    <div className="min-vh-100">
       <div className="w-75 mx-auto my-5">
         <h2>Register Now:</h2>
         <form className="my-4" action="" onSubmit={register.handleSubmit}>
@@ -154,7 +154,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

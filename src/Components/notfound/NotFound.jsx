@@ -3,7 +3,7 @@ import NoPath from "../../assets/images/notfound.svg";
 
 const NotFound = () => {
   return (
-    <div className="text-center my-5">
+    <div className="text-center my-5 min-vh-100">
       <img src={NoPath} />
     </div>
   );

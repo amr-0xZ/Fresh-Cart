@@ -52,7 +52,7 @@ const Order = () => {
   });
 
   return (
-    <>
+    <div className="min-vh-100">
       <div className="container w-75 my-5">
         <h2>Enter your order details:</h2>
         <form className="mt-4" action="" onSubmit={register.handleSubmit}>
@@ -146,7 +146,7 @@ const Order = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

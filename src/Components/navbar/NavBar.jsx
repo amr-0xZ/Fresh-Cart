@@ -6,11 +6,12 @@ import { cartContext } from "../../Contexts/CartContext";
 import axios from "axios";
 
 const NavBar = () => {
-  let { setAuthed } = useContext(authContext);
-  let { cartCount, fitchCartCount } = useContext(cartContext);
+  let { setAuthed,uId } = useContext(authContext);
+  let { cartCount,oerdersCount,userOrders , fitchCartCount } = useContext(cartContext);
 
   useEffect(() => {
     fitchCartCount();
+    userOrders(uId)
   }, []);
 
   return (
@@ -71,11 +72,11 @@ const NavBar = () => {
                 <NavLink
                   type="button"
                   className="btn position-relative"
-                  to="/orders"
+                  to="/allorders"
                 >
                   Orders<i class="fa-solid fa-receipt"></i>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    9
+                    {oerdersCount>0 && oerdersCount}
                   </span>
                 </NavLink>
               </li>
