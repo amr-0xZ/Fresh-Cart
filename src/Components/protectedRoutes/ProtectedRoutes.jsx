@@ -6,7 +6,7 @@ import { authContext } from "../../Contexts/AuthContext";
 
 const ProtectedRoutes = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  let { authed, setAuthed, setUId} = useContext(authContext);
+  let { authed, setAuthed, setUserData} = useContext(authContext);
   const token = localStorage.getItem("token");
 
   const verify = async (token) => {
@@ -24,8 +24,8 @@ const ProtectedRoutes = ({ children }) => {
         .then(({data}) => {
           if(data.message=="verified"){
             setAuthed(true);
-            setUId(data.decoded.id);
-            console.log(data.decoded.id);
+            setUserData(data.decoded);
+            console.log(data);
             setIsLoading(false);
             return data
           }

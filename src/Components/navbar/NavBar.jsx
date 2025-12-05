@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { NavLink } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 import { cartContext } from "../../Contexts/CartContext";
-import axios from "axios";
 
 const NavBar = () => {
-  let { setAuthed,uId } = useContext(authContext);
-  let { cartCount,oerdersCount,userOrders , fitchCartCount } = useContext(cartContext);
+  let { setAuthed, userData } = useContext(authContext);
+  let { cartCount, oerdersCount, userOrders, fitchCartCount } = useContext(cartContext);
 
   useEffect(() => {
     fitchCartCount();
-    userOrders(uId)
+    userOrders(userData.id)
   }, []);
 
   return (
@@ -55,57 +54,66 @@ const NavBar = () => {
                 </NavLink>
               </li>
             </ul>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item mx-2">
-                <NavLink
-                  type="button"
-                  className="btn position-relative"
-                  to="/wishlist"
-                >
-                  Wishlist<i className="fa-regular fa-heart ms-1"></i>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    9
-                  </span>
-                </NavLink>
-              </li>
-              <li className="nav-item mx-2">
-                <NavLink
-                  type="button"
-                  className="btn position-relative"
-                  to="/allorders"
-                >
-                  Orders<i class="fa-solid fa-receipt"></i>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {oerdersCount>0 && oerdersCount}
-                  </span>
-                </NavLink>
+
+
+
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+
+              <li className="nav-item dropdown ">
+                <a className=" dropdown-toggle d-flex align-items-center"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i className="fa-solid fa-user-circle fs-4 me-2 text-secondary"></i>
+                  <span>Hi, {userData.name}</span>
+                </a>
+
+                <ul className="dropdown-menu dropdown-menu-end shadow mt-3" style={{minWidth: 250}}>
+
+                  <li className="mb-1">
+                    <NavLink className="dropdown-item" to={"/profile"}>
+                      <i className="fa-solid fa-id-card me-2"></i> Profile
+                    </NavLink>
+                  </li>
+
+                  <li className="mb-1">
+                    <NavLink className="dropdown-item d-flex justify-content-between align-items-center" to={"/wishlist"}>
+                      <span>
+                        <i className="fa-regular fa-heart me-2"></i> Wishlist
+                      </span>
+                      <span class="badge bg-danger rounded-pill">3</span>
+                    </NavLink>
+                  </li>
+
+                  <li className="mb-1">
+                    <NavLink className="dropdown-item d-flex justify-content-between align-items-center" to={"/cart"}>
+                      <span>
+                        <i className="fa-solid fa-cart-shopping me-2"></i> Cart
+                      </span>
+                      <span class="badge bg-danger rounded-pill">{cartCount > 0 && cartCount}</span>
+                    </NavLink>
+                  </li>
+
+                  <li className="mb-1">
+                    <NavLink className="dropdown-item d-flex justify-content-between align-items-center" to={"/allorders"}>
+                      <span>
+                        <i className="fa-solid fa-receipt me-2"></i> Orders
+                      </span>
+                      <span class="badge bg-danger rounded-pill">{oerdersCount>0 && oerdersCount}</span>
+                    </NavLink>
+                  </li>
+
+                  <li><hr className="dropdown-divider"></hr></li>
+
+                  <li>
+                    <NavLink className="dropdown-item text-danger" to="/guest/home"
+                      onClick={() => {
+                        setAuthed(false);
+                        localStorage.clear("token");
+                      }}>
+                      <i className="fa-solid fa-right-from-bracket me-2"></i> Logout
+                    </NavLink>
+                  </li>
+                </ul>
               </li>
 
-              <li className="nav-item mx-2">
-                <NavLink
-                  type="button"
-                  className="btn position-relative"
-                  to="/cart"
-                >
-                  Cart<i className="fa-solid fa-cart-shopping ms-1"></i>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {cartCount > 0 && cartCount}
-                  </span>
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  aria-current="page"
-                  to="/guest/home"
-                  onClick={() => {
-                    setAuthed(false);
-                    localStorage.clear("token");
-                  }}
-                >
-                  Logout
-                </NavLink>
-              </li>
             </ul>
           </div>
         </div>

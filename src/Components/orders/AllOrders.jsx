@@ -6,7 +6,7 @@ import OrdersItem from "./OrdersItem";
 
 const AllOrders = () => {
 
-  let {uId} = useContext(authContext)
+  let {userData} = useContext(authContext)
   let {userOrders} = useContext(cartContext)
   let [orders, setOrders] = useState([])
   let [loading, setLoading] = useState(true);
@@ -23,7 +23,8 @@ const AllOrders = () => {
   }
 
   useEffect(()=>{
-    getOrders(uId)
+    console.log(userData.id)
+    getOrders(userData.id)
   },[])
 
   useEffect(()=>{

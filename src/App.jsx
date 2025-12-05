@@ -17,6 +17,7 @@ import AuthContext from "./Contexts/AuthContext";
 import CartContext from "./Contexts/CartContext";
 import Order from "./Components/order/Order";
 import AllOrders from "./Components/orders/AllOrders";
+import Profile from "./Components/profile/Profile";
 
 function App() {
   const routs = createBrowserRouter([
@@ -35,6 +36,10 @@ function App() {
         {
           path: "home",
           element: <Home />,
+        },
+        {
+          path: "profile",
+          element: <Profile/>
         },
         {
           path: "cart",

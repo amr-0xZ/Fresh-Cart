@@ -5,7 +5,7 @@ const OrdersItem = ({order}) => {
     let orderItems = order.cartItems
 
   return (
-        <div className="card order-card mb-4">
+        <div className="card order-card mb-4 shadow">
             
             <div className="d-flex flex-wrap justify-content-between align-items-center order-header">
                 <div>
