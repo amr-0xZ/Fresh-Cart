@@ -45,7 +45,7 @@ const Categories = () => {
           <div className="row my-5  d-flex justify-content-center ">
             {categories.data.map((categoriy) => {
               return (
-                <div  className="col-md-3 bg-light my-4 p-3 text-center  ">
+                <div key={categories._id}  className="col-md-3 bg-light my-4 p-3 text-center  ">
                   <Link>
                     <img
                       src={categoriy.image}

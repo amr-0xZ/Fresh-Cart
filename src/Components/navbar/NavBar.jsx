@@ -7,6 +7,7 @@ import { cartContext } from "../../Contexts/CartContext";
 const NavBar = () => {
   let { setAuthed, userData } = useContext(authContext);
   let { cartCount, oerdersCount, userOrders, fitchCartCount } = useContext(cartContext);
+  let user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
     fitchCartCount();
@@ -56,13 +57,13 @@ const NavBar = () => {
             </ul>
 
 
-
+          <div className="navBadg btn">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
 
               <li className="nav-item dropdown ">
                 <a className=" dropdown-toggle d-flex align-items-center"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa-solid fa-user-circle fs-4 me-2 text-secondary"></i>
-                  <span>Hi, {userData.name}</span>
+                  <span>Hi, {user.name}</span>
                 </a>
 
                 <ul className="dropdown-menu dropdown-menu-end shadow mt-3" style={{minWidth: 250}}>
@@ -113,8 +114,9 @@ const NavBar = () => {
                   </li>
                 </ul>
               </li>
-
             </ul>
+          </div>
+
           </div>
         </div>
       </nav>

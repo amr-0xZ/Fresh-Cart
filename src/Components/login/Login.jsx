@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
+
+
 const Login = () => {
   let { setAuthed } = useContext(authContext);
   const navegate = useNavigate();
@@ -35,6 +37,7 @@ const Login = () => {
           console.log(data);
 
           localStorage.setItem("token", data.data.token);
+          localStorage.setItem("user", JSON.stringify(data.data.user));
           setAuthed(true);
           navegate("/home", { replace: true });
         }
