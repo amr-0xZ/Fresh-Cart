@@ -6,7 +6,7 @@ import { cartContext } from "../../Contexts/CartContext";
 
 const Product = ({ item }) => {
   let { authed } = useContext(authContext);
-  let { addToCart } = useContext(cartContext);
+  let { addToCart, addToWishlist } = useContext(cartContext);
   let productPath = authed ? "/product/" : "/guest/product/";
 
   async function addProductToCart(id) {
@@ -14,6 +14,14 @@ const Product = ({ item }) => {
     console.log(data);
     toast.success(
       item.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+    );
+  }
+
+  async function addProductToWish(id) {
+    let data = await addToWishlist(id);
+    console.log(data);
+    toast.success(
+      item.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
     );
   }
 
@@ -35,14 +43,24 @@ const Product = ({ item }) => {
           </div>
         </Link>
         {authed ? (
-          <button
-            className="btn bg-main text-white w-100 mt-2"
-            onClick={() => {
-              addProductToCart(item._id);
-            }}
-          >
-            Add to cart
-          </button>
+          <div className="d-flex justify-content-between align-items-center px-2">
+            <button
+              className="btn bg-danger text-white w-auto mt-2 text-center"
+              onClick={() => {
+                addProductToWish(item._id);
+              }}
+            >
+              <i class="fa-regular fa-heart"></i>
+            </button>
+            <button
+              className="btn bg-main text-white w-auto mt-2 text-center"
+              onClick={() => {
+                addProductToCart(item._id);
+              }}
+            >
+              <i className="fa-solid fa-cart-arrow-down"></i>
+            </button>
+          </div>
         ) : (
           ""
         )}

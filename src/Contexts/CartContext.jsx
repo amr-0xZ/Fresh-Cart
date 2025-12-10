@@ -6,7 +6,11 @@ export let cartContext = createContext();
 
 const CartContext = ({ children }) => {
   let [cartCount, setCartCount] = useState(0);
+  let [cart, setCart] = useState([]);
   let [oerdersCount, setOrdersCount] = useState(0)
+  let [wishlist, setWishlist] = useState([]);
+  let [wishlistCount, setWishlistCount] = useState(0)
+  
 
   function fitchCartCount() {
     return axios
@@ -14,6 +18,7 @@ const CartContext = ({ children }) => {
         headers: { token: localStorage.getItem("token") },
       })
       .then(({ data }) => {
+        setCart(data)
         setCartCount(data.numOfCartItems);
         return data;
       })
@@ -47,6 +52,7 @@ const CartContext = ({ children }) => {
         { headers: { token: localStorage.getItem("token") } }
       )
       .then(({ data }) => {
+        fitchCartCount()
         return data;
       })
       .catch(({ err }) => {
@@ -60,6 +66,7 @@ const CartContext = ({ children }) => {
         headers: { token: localStorage.getItem("token") },
       })
       .then(({ data }) => {
+        fitchCartCount()
         return data;
       })
       .catch(({ err }) => {
@@ -128,10 +135,60 @@ const CartContext = ({ children }) => {
       })
     }
 
+    function getWishlist(){
+      return axios.get('https://ecommerce.routemisr.com/api/v1/wishlist',
+        {headers:{
+          token: localStorage.getItem("token")
+        }}
+      ).then(({data})=>{
+        console.log(data);
+        setWishlist(data.data)
+        setWishlistCount(data.count)
+        return data
+      }).catch(({error})=>{
+        console.log(error);
+        return error
+      })
+    }
+
+    function addToWishlist(id){
+      return axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,
+      {productId: id}  ,
+      {headers:{
+          token: localStorage.getItem("token")
+        }
+      }).then(({data})=>{
+        if(data){
+          getWishlist()
+          return data
+        }
+      }).catch(({error})=>{
+        console.log(error);
+        return error
+      })
+    }
+
+    function remFromWishlist(id){
+      return axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,{
+        headers:{
+          token: localStorage.getItem("token")
+        }
+      }).then(({data})=>{
+        if(data){
+          getWishlist()
+          return data
+        }
+      }).catch(({error})=>{
+        console.log(error);
+        return error
+      })
+    }
+
   return (
     <cartContext.Provider
       value={{
         cartCount,
+        cart,
         oerdersCount,
         fitchCartCount,
         addToCart,
@@ -140,7 +197,12 @@ const CartContext = ({ children }) => {
         clearCart,
         visaOrder,
         cashOrder,
-        userOrders
+        userOrders,
+        getWishlist,
+        wishlist,
+        wishlistCount,
+        remFromWishlist,
+        addToWishlist
       }}
     >
       {children}

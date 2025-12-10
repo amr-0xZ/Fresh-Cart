@@ -9,7 +9,7 @@ import { cartContext } from "../../Contexts/CartContext";
 const ProductDetails = () => {
   let params = useParams();
   let { authed } = useContext(authContext);
-  let { addToCart } = useContext(cartContext);
+  let { addToCart, addToWishlist } = useContext(cartContext);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +18,14 @@ const ProductDetails = () => {
     console.log(data);
     toast.success(
       product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+    );
+  }
+
+  async function addProductToWish(id) {
+    let data = await addToWishlist(id);
+    console.log(data);
+    toast.success(
+      item.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
     );
   }
 
@@ -62,14 +70,24 @@ const ProductDetails = () => {
               </div>
             </div>
             {authed ? (
-              <button
-                className="btn bg-main text-white w-100 mt-4"
-                onClick={() => {
-                  addProductToCart(product._id);
-                }}
-              >
-                Add to cart
-              </button>
+          <div className="d-flex justify-content-between align-items-center px-2">
+            <button
+              className="btn bg-danger text-white w-auto mt-2 text-center"
+              onClick={() => {
+                addProductToWish(product._id);
+              }}
+            >
+              <i class="fa-regular fa-heart"></i>
+            </button>
+            <button
+              className="btn bg-main text-white w-auto mt-2 text-center"
+              onClick={() => {
+                addProductToCart(product._id);
+              }}
+            >
+              <i className="fa-solid fa-cart-arrow-down"></i> Add To Cart
+            </button>
+          </div>
             ) : (
               <Link
                 className="btn bg-main text-white w-100 mt-4"

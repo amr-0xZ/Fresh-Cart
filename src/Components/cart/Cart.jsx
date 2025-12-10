@@ -6,14 +6,12 @@ import { PropagateLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
 const Cart = () => {
-  let { fitchCartCount, clearCart } = useContext(cartContext);
-  let [cart, setCart] = useState({});
+  let { fitchCartCount, clearCart, cart } = useContext(cartContext);
   let [loading, setLoading] = useState(true);
   let [empty, setEmpty] = useState(true);
 
   async function getCartData() {
     let data = await fitchCartCount();
-    setCart(data);
     console.log(data);
   }
 
@@ -30,8 +28,10 @@ const Cart = () => {
   useEffect(() => {
     if (cart.data) {
       setLoading(false);
-      if (cart.data.totalCartPrice !== 0) {
+      if (cart.numOfCartItems > 0) {
         setEmpty(false);
+      }else{
+        setEmpty(true)
       }
     }
   }, [cart]);
@@ -90,7 +90,7 @@ const Cart = () => {
             </button>
             <Link
               className="btn bg-main text-white"
-              to={`/order/${cart.cartId}`}
+              to={`/order/${cart.data.cartId}`}
             >
               <i className="fa-solid fa-check"></i> Create Order
             </Link>

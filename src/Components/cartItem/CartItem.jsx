@@ -13,8 +13,8 @@ const CartItem = ({ product, getCartData }) => {
 
   async function minusItem(productId, currentCount) {
     await oneLessItem(productId, currentCount);
+    await getCartData();
     toast.success("Removed one " + product.product.title + " from your cart");
-    getCartData();
   }
 
   async function removeCartProduct(productId) {

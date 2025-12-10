@@ -6,12 +6,13 @@ import { cartContext } from "../../Contexts/CartContext";
 
 const NavBar = () => {
   let { setAuthed, userData } = useContext(authContext);
-  let { cartCount, oerdersCount, userOrders, fitchCartCount } = useContext(cartContext);
+  let { cartCount, oerdersCount, userOrders, fitchCartCount, wishlistCount, getWishlist } = useContext(cartContext);
   let user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
     fitchCartCount();
     userOrders(userData.id)
+    getWishlist()
   }, []);
 
   return (
@@ -79,7 +80,7 @@ const NavBar = () => {
                       <span>
                         <i className="fa-regular fa-heart me-2"></i> Wishlist
                       </span>
-                      <span class="badge bg-danger rounded-pill">3</span>
+                      <span class="badge bg-danger rounded-pill">{wishlistCount > 0 && wishlistCount}</span>
                     </NavLink>
                   </li>
 
