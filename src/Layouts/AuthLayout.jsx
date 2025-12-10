@@ -39,16 +39,6 @@ const AuthLayout = () => {
                   Products
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/guest/categories">
-                  Categories
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/guest/brands">
-                  Brands
-                </NavLink>
-              </li>
             </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">

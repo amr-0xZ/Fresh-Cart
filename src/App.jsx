@@ -4,8 +4,6 @@ import MainLayout from "./Layouts/MainLayout";
 import Home from "./Components/home/Home";
 import Cart from "./Components/cart/Cart";
 import Products from "./Components/products/Products";
-import Categories from "./Components/categories/Categories";
-import Brands from "./Components/brands/Brands";
 import Wishlist from "./Components/wishlist/WishList";
 import NotFound from "./Components/notfound/NotFound";
 import AuthLayout from "./Layouts/AuthLayout";
@@ -50,14 +48,6 @@ function App() {
           element: <Products />,
         },
         {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "brands",
-          element: <Brands />,
-        },
-        {
           path: "wishlist",
           element: <Wishlist />,
         },
@@ -85,14 +75,6 @@ function App() {
         {
           path: "products",
           element: <Products />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "brands",
-          element: <Brands />,
         },
         { path: "product/:id", element: <ProductDetails /> },
         { path: "login", element: <Login /> },

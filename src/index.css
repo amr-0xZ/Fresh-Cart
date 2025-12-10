@@ -127,3 +127,145 @@ a:hover {
   -webkit-box-shadow: 0px 0px 50px 25px rgba(28,145,0,0.52); 
 box-shadow: 0px 0px 50px 25px rgba(28,145,0,0.52);
 }
+
+
+        .product-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        /* Main Product Image Styling */
+        .main-image {
+            object-fit: contain;
+            max-height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        /* Rating Stars Color */
+        .text-warning {
+            color: #ffc107 !important; /* Gold color for stars */
+        }
+
+        /* Theme Green Color (matching your previous screenshots) */
+        .text-success-theme {
+            color: #0aad0a;
+        }
+        
+        .btn-success-theme {
+            background-color: #0aad0a;
+            border-color: #0aad0a;
+            color: white;
+            padding: 10px 24px;
+        }
+
+        .btn-success-theme:hover {
+            background-color: #088d08;
+            border-color: #088d08;
+        }
+
+
+
+
+
+
+/* brands slider */
+
+/* 1. The Window: Hides everything outside the box */
+        .slider-container {
+          overflow: hidden;
+          background: white;
+          padding: 20px 0;
+          white-space: nowrap;
+          position: relative;
+        }
+
+        /* 2. Fade Effect (Optional): Makes sides look faded */
+        .slider-container::before,
+        .slider-container::after {
+          position: absolute;
+          top: 0;
+          width: 100px;
+          height: 100%;
+          content: "";
+          z-index: 2;
+        }
+        .slider-container::before {
+          left: 0;
+          background: linear-gradient(to right, white, transparent);
+        }
+        .slider-container::after {
+          right: 0;
+          background: linear-gradient(to left, white, transparent);
+        }
+
+        /* 3. The Track: Holds all items in a long horizontal line */
+        .slider-track {
+          display: flex;
+          width: calc(200px * 40); /* Width = (Slide Width * Total Items * 2) */
+          animation: scroll 40s linear infinite; /* The Magic: 20s speed */
+        }
+
+        /* 4. The Individual Slide */
+        .slide {
+          width: 200px; /* Fixed width for consistency */
+          flex-shrink: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 0 15px;
+        }
+
+        .brand-img {
+          width: 100%;
+          height: 80px;
+          object-fit: contain; /* Ensures logo isn't stretched */
+          margin-bottom: 10px;
+          transition: transform 0.3s;
+        }
+        
+        /* Hover Effect: Pause animation and zoom logo */
+        .slider-track:hover {
+          animation-play-state: paused;
+        }
+        
+        .slide:hover .brand-img {
+          transform: scale(1.1);
+        }
+
+        .brand-name {
+          font-size: 0.9rem;
+          color: #6c757d;
+          font-weight: 500;
+        }
+
+        /* 5. The Animation Keyframes */
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); } /* Move exactly half way (the length of the first set) */
+        }
+
+
+/* Categories styling */
+
+        .category-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+        }
+
+        /* Lift the card slightly on hover */
+        .category-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Zoom the image slightly on hover */
+        .cat-img {
+          transition: transform 0.5s ease;
+        }
+        .category-card:hover .cat-img {
+          transform: scale(1.1);
+        }
