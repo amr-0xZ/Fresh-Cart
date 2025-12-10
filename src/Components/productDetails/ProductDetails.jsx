@@ -44,7 +44,7 @@ const ProductDetails = () => {
 
   if (loading) {
     return (
-      <div className="my-4 d-flex justify-content-center align-products-center mx-auto ">
+      <div className="min-vh-100 my-4 d-flex justify-content-center align-products-center mx-auto ">
         <div className="row gy-4 mt-lg-4">
           <PropagateLoader color="#0aad0a" />
         </div>
@@ -53,7 +53,7 @@ const ProductDetails = () => {
   } else {
     return (
 
-      <div className="container py-5">
+      <div className="min-vh-100 container py-5">
   <div className="product-container p-4">
     <div className="row g-5 align-items-center">
       <div className="col-md-5 text-center">
@@ -100,11 +100,11 @@ const ProductDetails = () => {
           </button>
         </div>
             ) : (
-              <Link
-                classNameName="btn bg-main text-white w-100 mt-4"
-                to={"/guest/login"}
+              <Link to={"/guest/login"}
               >
-                Login to buy
+              <button className="btn text-white bg-main px-3 w-25">
+                Login To Buy
+              </button>
               </Link>
           )}
       </div>

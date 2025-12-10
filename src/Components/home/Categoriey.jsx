@@ -20,7 +20,7 @@ const Categoriey = ({cat}) => {
     <div className="col">
             
             {/* Category Card */}
-            <Link to={productsPath+"?"+cat.name}>
+            <Link to={productsPath+"?cat="+cat.name}>
               <div className="card h-100 border-0 shadow-sm category-card text-center">
               
               {/* Image Container (with hidden overflow for zoom effect) */}
