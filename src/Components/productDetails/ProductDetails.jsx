@@ -12,6 +12,17 @@ const ProductDetails = () => {
   let { addToCart, addToWishlist } = useContext(cartContext);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  let [fullStars, setFullStars] = useState(0)
+  let [halfStar, setHalfStar] = useState(false)
+  let [emptyStars, setEmptyStars] = useState(0)
+
+
+  function starsHandele(stars){
+    setFullStars(Math.floor(stars))
+    setHalfStar(stars%1 !== 0)
+    setEmptyStars(5-Math.ceil(stars))
+  }
+
 
   async function addProductToCart(id) {
     let data = await addToCart(id);
@@ -35,6 +46,7 @@ const ProductDetails = () => {
       `https://ecommerce.routemisr.com/api/v1/products/${params.id}`
     );
     setProduct(data.data.data);
+    starsHandele(data.data.data.ratingsAverage)
     setLoading(false);
   }
 
@@ -68,12 +80,20 @@ const ProductDetails = () => {
         </h1>
         <div className="d-flex align-items-center mb-3">
           <div className="me-3">
-            <i className="fa-solid fa-star text-warning" />
-            <i className="fa-solid fa-star text-warning" />
-            <i className="fa-solid fa-star text-warning" />
-            <i className="fa-solid fa-star text-warning" />
-            <i className="fa-solid fa-star-half-stroke text-warning" />
-            <span className="ms-1 text-muted small">({product.ratingsAverage})</span>
+            {fullStars>0? (
+              Array.from({length: fullStars}).map((_,i)=>(
+                <i key={i} className="fa-solid fa-star text-warning" />
+              ))
+            ) : ("")}
+            {halfStar? (
+              <i className="fa-solid fa-star-half-stroke text-warning" />
+            ) : ("")}
+            {emptyStars>0? (
+              Array.from({length: emptyStars}).map((_,i)=>(
+                <i key={i} class="fa-regular fa-star text-warning"></i>
+              ))
+            ) : ("")}
+            <span className="ms-1 text-muted small">{product.ratingsAverage}</span>
           </div>
           <span className="text-muted small border-start ps-3">
             <i className="fa-solid fa-basket-shopping me-1" /> {product.sold} Sold
@@ -114,59 +134,6 @@ const ProductDetails = () => {
 
 
 
-
-
-
-
-
-      /* // <div classNameName="container my-5">
-      //   <div classNameName="row">
-      //     <div classNameName="col-md-3">
-      //       <img classNameName="w-100 " src={product.imageCover} alt="" />
-      //     </div>
-      //     <div classNameName="col-md-9">
-      //       <div classNameName="w-100 pt-5 pb-3">
-      //         <h3>{product.title}</h3>
-      //         <p classNameName="font-sm px-3">{product.description}</p>
-      //       </div>
-      //       <h6>{product.category.name}</h6>
-      //       <div classNameName="d-flex justify-content-between">
-      //         <div classNameName="font-sm">{product.price} EGP</div>
-      //         <div classNameName="font-sm">
-      //           <i classNameName="fa-solid fa-star rating-color"></i>
-      //           {product.ratingsAverage}
-      //         </div>
-      //       </div>
-      //       {authed ? (
-      //     <div classNameName="d-flex justify-content-between align-items-center px-2">
-      //       <button
-      //         classNameName="btn bg-danger text-white w-auto mt-2 text-center"
-      //         onClick={() => {
-      //           addProductToWish(product._id);
-      //         }}
-      //       >
-      //         <i className="fa-regular fa-heart"></i>
-      //       </button>
-      //       <button
-      //         classNameName="btn bg-main text-white w-auto mt-2 text-center"
-      //         onClick={() => {
-      //           addProductToCart(product._id);
-      //         }}
-      //       >
-      //         <i classNameName="fa-solid fa-cart-arrow-down"></i> Add To Cart
-      //       </button>
-      //     </div>
-      //       ) : (
-      //         <Link
-      //           classNameName="btn bg-main text-white w-100 mt-4"
-      //           to={"/guest/login"}
-      //         >
-      //           Login to buy
-      //         </Link>
-      //       )}
-      //     </div>
-      //   </div>
-      // </div> */
     );
   }
 };

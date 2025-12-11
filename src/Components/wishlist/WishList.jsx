@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { cartContext } from "../../Contexts/CartContext";
 import { PropagateLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const WishList = () => {
 
@@ -60,11 +61,14 @@ const WishList = () => {
     return (
       <>
       <div className="min-vh-100">
-        <div className="container w-75 mt-4 bg-light">
-          <div className="pb-2">
-            <h2>Your Wish List:</h2>
-            <h4>Your Wish List Is Empty</h4>
-          </div>
+        <div className="container w-75 mt-5 text-center">
+          
+            <h2>Wish List</h2>
+            <div className=" w-50 mx-auto mt-5 p-5 shadow text-center" style={{borderRadius: 10}}>
+              <h4 className="my-4">Your Wish List Is Empty</h4>
+              <p className="d-inline-block my-auto"><Link to={"/products"}><span className="text-main">Explore Products?</span></Link></p>
+            </div>
+          
         </div>
       </div>
       </>

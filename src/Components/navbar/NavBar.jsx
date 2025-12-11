@@ -48,12 +48,14 @@ const NavBar = () => {
             </ul>
 
 
-          <div className="navBadg btn">
+          <div className="navBadg btn ">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
 
               <li className="nav-item dropdown ">
                 <a className=" dropdown-toggle d-flex align-items-center"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fa-solid fa-user-circle fs-4 me-2 text-secondary"></i>
+                  <i className="fa-solid fa-user-circle fs-4 me-2 text-secondary position-relative">
+                    <span class="badge position-absolute top-0 end-100  bg-danger rounded-pill text-danger" style={{fontSize: 5}}>{cartCount>0||oerdersCount>0||wishlistCount>0? (".") : ("")}</span>
+                  </i>
                   <span>Hi, {user.name}</span>
                 </a>
 

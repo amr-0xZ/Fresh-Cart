@@ -48,14 +48,14 @@ const Cart = () => {
     return (
       <>
       <div className="min-vh-100">
-        <div className="container w-75 mt-4 bg-light">
-          <div className="pb-2">
+        <div className="container w-75 mt-5 text-center">
+          
             <h2>Shop Cart</h2>
-            <p className="text-main">
-              Total Cart Price: {cart.data?.totalCartPrice}
-            </p>
-            <h4>Your Cart Is Empty</h4>
-          </div>
+            <div className=" w-50 mx-auto mt-5 p-5 shadow text-center" style={{borderRadius: 10}}>
+              <h4 className="my-4">Your Cart Is Empty</h4>
+              <p className="d-inline-block my-auto"><Link to={"/products"}><span className="text-main">Go shopping?</span></Link></p>
+            </div>
+          
         </div>
       </div>
       </>
@@ -63,13 +63,12 @@ const Cart = () => {
   } else {
     return (
       <div className="min-vh-100">
-        <div className="container w-75 mt-4 bg-light">
-          <div className="pb-2">
+        <div className="container w-75 mt-5 text-center">
+          
             <h2>Shop Cart</h2>
-            <p className="text-main">
-              Total Cart Price: {cart.data?.totalCartPrice}
-            </p>
-          </div>
+            
+          
+          <div className=" w-100 mx-auto mt-5 p-5 shadow text-center" style={{borderRadius: 10}}>
           {cart.data?.products.map((product) => {
             return (
               <CartItem
@@ -88,13 +87,19 @@ const Cart = () => {
             >
               <i className="fa-solid fa-trash-can"></i> Empty Cart
             </button>
+            <p className="text-main my-auto" style={{ fontSize: 24}}>
+              Total: {cart.data?.totalCartPrice} EGP
+            </p>
             <Link
               className="btn bg-main text-white"
-              to={`/order/${cart.data.cartId}`}
+              to={`/order/${cart.cartId}`}
             >
               <i className="fa-solid fa-check"></i> Create Order
             </Link>
           </div>
+          </div>
+
+
         </div>
       </div>
     );

@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navegate = useNavigate();
@@ -50,9 +50,9 @@ const Signup = () => {
 
   return (
     <div className="min-vh-100">
-      <div className="w-75 mx-auto my-5">
+      <div className="w-75 mx-auto my-5 text-center">
         <h2>Register Now:</h2>
-        <form className="my-4" action="" onSubmit={register.handleSubmit}>
+        <form className="mt-5 p-5 shadow text-start" style={{borderRadius: 10}} action="" onSubmit={register.handleSubmit}>
           <label htmlFor="Name">Name:</label>
           <input
             onChange={register.handleChange}
@@ -145,13 +145,26 @@ const Signup = () => {
             ""
           )}
 
+
+          <div className="d-flex justify-content-between align-items-center mt-5">
           <button
             disabled={!(register.dirty && register.isValid)}
-            className="btn bg-main text-white mt-4 "
+            className="btn bg-main text-white"
             type="submit"
           >
             Sign up
           </button>
+
+          <div className=" text-center">
+            <p>Do you have an account?  <Link to={"/guest/login"}><span className="text-main">Login</span></Link></p>
+          </div>
+          </div>
+
+
+
+
+
+
         </form>
       </div>
     </div>

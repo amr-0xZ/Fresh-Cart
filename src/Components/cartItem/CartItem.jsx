@@ -27,7 +27,7 @@ const CartItem = ({ product, getCartData }) => {
 
   return (
     <>
-      <div className="row my-3 border-bottom border-2">
+      <div className="row my-3 border border-2 text-start p-3" style={{borderRadius: 10}}>
         <div className="col-md-2">
           <img className="w-100 mx-3" src={product.product.imageCover} alt="" />
         </div>
@@ -38,7 +38,7 @@ const CartItem = ({ product, getCartData }) => {
               <p className="text-main">Price: {product.price}</p>
             </div>
             <button
-              className="btn"
+              className="btn mt-4"
               onClick={() => {
                 removeCartProduct(product.product._id);
               }}

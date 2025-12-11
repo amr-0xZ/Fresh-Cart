@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 
 
@@ -50,9 +50,9 @@ const Login = () => {
 
   return (
     <div className="min-vh-100">
-      <div className="w-75 mx-auto my-5">
+      <div className="w-75 mx-auto my-5 text-center">
         <h2>Login To Your Account:</h2>
-        <form className="my-4" action="" onSubmit={register.handleSubmit}>
+        <form className="mt-5 p-5 shadow text-start" style={{borderRadius: 10}} action="" onSubmit={register.handleSubmit}>
           <label htmlFor="Email">Email:</label>
           <input
             onChange={register.handleChange}
@@ -93,13 +93,25 @@ const Login = () => {
             ""
           )}
 
-          <button
+          <div className="d-flex justify-content-between align-items-center mt-5">
+            <button
             disabled={!(register.dirty && register.isValid)}
-            className="btn bg-main text-white mt-4 "
+            className="btn bg-main text-white "
             type="submit"
           >
             Login
           </button>
+
+          <div className="text-center">
+            <p className="d-inline-block my-auto"><Link to={"/guest/signup"}><span className="text-main">Forget Password?</span></Link></p>
+            <span className="d-inline-block text-black-50 mx-2">{"|"}</span>
+            <p className="d-inline-block my-auto"><Link to={"/guest/signup"}> <span className="text-main">Create account?</span></Link></p>
+          </div>
+
+          </div>
+
+          
+
         </form>
       </div>
     </div>
