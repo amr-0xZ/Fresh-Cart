@@ -119,7 +119,7 @@ const Signup = () => {
             ""
           )}
 
-          <label htmlFor="rePassword">rePassword:</label>
+          <label htmlFor="rePassword">Re Enter Password:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -156,7 +156,7 @@ const Signup = () => {
           </button>
 
           <div className=" text-center">
-            <p>Do you have an account?  <Link to={"/guest/login"}><span className="text-main">Login</span></Link></p>
+            <p>Do you have account?  <Link to={"/guest/login"}><span className="text-main">Login</span></Link></p>
           </div>
           </div>
 

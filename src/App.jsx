@@ -16,6 +16,7 @@ import CartContext from "./Contexts/CartContext";
 import Order from "./Components/order/Order";
 import AllOrders from "./Components/orders/AllOrders";
 import Profile from "./Components/profile/Profile";
+import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 
 function App() {
   const routs = createBrowserRouter([
@@ -83,6 +84,10 @@ function App() {
           path: "*",
           element: <NotFound />,
         },
+        {
+          path: "resetpass",
+          element: <ForgetPassword/>
+        }
       ],
     },
   ]);

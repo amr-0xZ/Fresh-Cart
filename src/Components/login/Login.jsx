@@ -103,7 +103,7 @@ const Login = () => {
           </button>
 
           <div className="text-center">
-            <p className="d-inline-block my-auto"><Link to={"/guest/signup"}><span className="text-main">Forget Password?</span></Link></p>
+            <p className="d-inline-block my-auto"><Link to={"/guest/resetpass"}><span className="text-main">Forget Password?</span></Link></p>
             <span className="d-inline-block text-black-50 mx-2">{"|"}</span>
             <p className="d-inline-block my-auto"><Link to={"/guest/signup"}> <span className="text-main">Create account?</span></Link></p>
           </div>
