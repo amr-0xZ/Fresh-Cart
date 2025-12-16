@@ -2,13 +2,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 
 
 const Login = () => {
   let { setAuthed } = useContext(authContext);
+  let [loading, setLoading] = useState(false)
   const navegate = useNavigate();
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -29,6 +30,7 @@ const Login = () => {
   });
 
   function sendData(values) {
+    setLoading(true)
     axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
       .then((data) => {
@@ -39,12 +41,14 @@ const Login = () => {
           localStorage.setItem("token", data.data.token);
           localStorage.setItem("user", JSON.stringify(data.data.user));
           setAuthed(true);
+          setLoading(false)
           navegate("/home", { replace: true });
         }
       })
       .catch((err) => {
         // console.log(err);
         toast.error(err.response.data.message);
+        setLoading(false)
       });
   }
 
@@ -99,7 +103,11 @@ const Login = () => {
             className="btn bg-main text-white "
             type="submit"
           >
-            Login
+            {loading? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
+              "Login"
+            )}
           </button>
 
           <div className="text-center">

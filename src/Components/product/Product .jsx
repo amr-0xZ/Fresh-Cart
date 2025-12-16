@@ -9,6 +9,7 @@ const Product = ({ product }) => {
   let { addToCart, addToWishlist, wishlist, remFromWishlist } = useContext(cartContext);
   let productPath = authed ? "/product/" : "/guest/product/";
   let [liked, setLiked] = useState(false)
+  let [loading, setLoading] = useState(false)
 
   console.log(product);
   
@@ -20,26 +21,28 @@ const Product = ({ product }) => {
   }
 
   async function addProductToCart(id) {
+    setLoading(true)
     let data = await addToCart(id);
     console.log(data);
+    setLoading(false)
     toast.success(
       product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
     );
   }
 
   async function addProductToWish(id) {
+    setLiked(!liked)
     let data = await addToWishlist(id);
     console.log(data);
-    wishChick()
     toast.success(
       product.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
     );
   }
 
   async function remProductFromWish(id) {
+    setLiked(!liked)
     let data = await remFromWishlist(id);
     console.log(data);
-    wishChick()
     toast.success(
       product.title.split(" ").slice(0, 2).join(" ") + " removed from your wish list"
     );
@@ -128,7 +131,13 @@ const Product = ({ product }) => {
                         addProductToCart(product._id);
                       }}
                     >
-                       <i className="fa-solid fa-cart-arrow-down"></i> Add
+                    {loading? (
+                      <i className="fa-solid fa-spinner"></i>
+                    ) : (
+                      <>
+                      <i className="fa-solid fa-cart-arrow-down"></i> Add
+                      </>
+                    )}
                     </button>
                   ) : (
                     <Link className="btn btn-success-theme btn-sm"

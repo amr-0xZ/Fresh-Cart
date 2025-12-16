@@ -11,9 +11,12 @@ const Order = () => {
   let [noAddresses, setNoAdresses] = useState(true)
   let { id } = useParams();
   let navigate = useNavigate()
+  let [loading, setLoading] = useState(false)
 
   async function cashPay(params, id) {
+    setLoading(true)
     await cashOrder(params, id)
+    setLoading(false)
     navigate("/allorders", { replace: true });
   }
 
@@ -54,6 +57,7 @@ const Order = () => {
         let { method, ...data } = values;
         cashPay(data, id);
       } else if (values.method == "visa") {
+        setLoading(true)
         let { method, ...data } = values;
           visaOrder(data, id);
       }
@@ -163,7 +167,11 @@ const Order = () => {
             className="btn bg-main text-white mt-4 "
             type="submit"
           >
-            Order
+          {loading? (
+            <i className="fa-solid fa-spinner"></i>
+          ) : (
+            "Order"
+          )}
           </button>
         </form>
       </div>
@@ -261,7 +269,11 @@ const Order = () => {
             className="btn bg-main text-white mt-4 "
             type="submit"
           >
-            Order
+          {loading? (
+            <i className="fa-solid fa-spinner"></i>
+          ) : (
+            "Order"
+          )}
           </button>
         </form>
       </div>

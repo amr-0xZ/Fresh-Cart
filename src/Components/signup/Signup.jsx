@@ -2,11 +2,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navegate = useNavigate();
+  let [loading, setLoading] = useState(false)
   const validate = Yup.object().shape({
     name: Yup.string().min(3).max(20).required(),
     email: Yup.string().required().email(),
@@ -35,16 +36,19 @@ const Signup = () => {
   });
 
   function sendData(values) {
+    setLoading(true)
     axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
       .then((data) => {
         if (data.statusText == "Created") {
           toast.success("Account created successfully");
+          setLoading(false)
           navegate("/login");
         }
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+        setLoading(false)
       });
   }
 
@@ -152,7 +156,11 @@ const Signup = () => {
             className="btn bg-main text-white"
             type="submit"
           >
-            Sign up
+            {loading? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
+              "Sign up"
+            )}
           </button>
 
           <div className=" text-center">

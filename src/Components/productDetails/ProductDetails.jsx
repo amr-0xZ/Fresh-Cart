@@ -9,12 +9,22 @@ import { cartContext } from "../../Contexts/CartContext";
 const ProductDetails = () => {
   let params = useParams();
   let { authed } = useContext(authContext);
-  let { addToCart, addToWishlist } = useContext(cartContext);
+  let { addToCart, addToWishlist, wishlist, remFromWishlist } = useContext(cartContext);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   let [fullStars, setFullStars] = useState(0)
   let [halfStar, setHalfStar] = useState(false)
   let [emptyStars, setEmptyStars] = useState(0)
+  let [liked, setLiked] = useState(false)
+  let [addLoading, setAddLoading] = useState(false)
+
+
+  function wishChick(id){
+    let likedItems = wishlist.filter((item)=>{
+      return item._id === id
+    })
+    likedItems.length>0? setLiked(true) : setLiked(false)
+  }
 
 
   function starsHandele(stars){
@@ -25,8 +35,10 @@ const ProductDetails = () => {
 
 
   async function addProductToCart(id) {
+    setAddLoading(true)
     let data = await addToCart(id);
     console.log(data);
+    setAddLoading(false)
     toast.success(
       product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
     );
@@ -34,18 +46,31 @@ const ProductDetails = () => {
   
 
   async function addProductToWish(id) {
-    let data = await addToWishlist(id);
-    console.log(data);
-    toast.success(
-      product.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
-    );
+      setLiked(!liked)
+      let data = await addToWishlist(id);
+      console.log(data);
+      toast.success(
+        product.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
+      );
   }
+
+
+  async function remProductFromWish(id) {
+      setLiked(!liked)
+      let data = await remFromWishlist(id);
+      console.log(data);
+      toast.success(
+        product.title.split(" ").slice(0, 2).join(" ") + " removed from your wish list"
+      );
+  }
+
 
   async function getProduct() {
     let data = await axios.get(
       `https://ecommerce.routemisr.com/api/v1/products/${params.id}`
     );
     setProduct(data.data.data);
+    wishChick(data.data.data._id)
     starsHandele(data.data.data.ratingsAverage)
     setLoading(false);
   }
@@ -53,6 +78,8 @@ const ProductDetails = () => {
   useEffect(() => {
     getProduct();
   }, []);
+
+
 
   if (loading) {
     return (
@@ -111,13 +138,29 @@ const ProductDetails = () => {
           <button className="btn btn-success-theme flex-grow-1" onClick={() => {
                 addProductToCart(product._id);
               }}>
-            <i className="fa-solid fa-cart-plus me-2" /> Add to Cart
+            {addLoading? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
+              <>
+              <i className="fa-solid fa-cart-plus me-2" /> Add to Cart
+              </>
+            )}
           </button>
-          <button className="btn text-white bg-danger px-3" title="Add to Wishlist" onClick={() => {
-                addProductToWish(product._id);
-              }}>
-            <i className="fa-regular fa-heart" />
-          </button>
+
+          {liked? (
+            <button className="btn text-white bg-danger px-3" title="Remove from Wishlist" onClick={() => {
+                  remProductFromWish(product._id);
+                }}>
+              <i className="fa-solid fa-heart" />
+            </button>
+          ) : (
+            <button className="btn text-white bg-danger px-3" title="Add to Wishlist" onClick={() => {
+                  addProductToWish(product._id);
+                }}>
+              <i className="fa-regular fa-heart" />
+            </button>
+          )}
+
         </div>
             ) : (
               <Link to={"/guest/login"}

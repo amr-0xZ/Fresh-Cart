@@ -3,23 +3,22 @@ import { authContext } from '../../Contexts/AuthContext'
 import { toast } from 'react-toastify'
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import ProfileAddress from './ProfileAddress';
 
 const Profile = () => {
-  let {getAdresses, adresses,editUser, addAddress, DeleteAddress} = useContext(authContext)
+  let {getAdresses, adresses,editUser, addAddress} = useContext(authContext)
   let userData = JSON.parse(localStorage.getItem("user"))
   let [edit, setEdit] = useState(false)
   let [addressForm, setAddressForm] = useState(false)
   let [editName, setEditName] = useState(userData.name)
   let [editEmail, setEditEmail] = useState(userData.email)
+  let [loading, setLoading] = useState("")
 
-
-  async function deleteAddr(id) {
-    await DeleteAddress(id)
-    toast.success("One address deleted")
-  }
 
   async function saveAddr(values) {
+    setLoading("saveaddrr")
     await addAddress(values)
+    setLoading("")
     toast.success("New address saved")
     setAddressForm(!addressForm)
   }  
@@ -62,16 +61,20 @@ const Profile = () => {
 
   async function editData() {
     if(editName!==userData.name && editEmail!==userData.email){
+      setLoading("saveuser")
       let data = {name: editName, email: editEmail}
       let response = await editUser(data)
+      setLoading("")
       if(response.message=="success"){
         localStorage.setItem("user", JSON.stringify(response.user))
         toast.success("Your data updated")
         setEdit(false)
       }
     }else if(editName!==userData.name && editEmail==userData.email){
+      setLoading("saveuser")
       const data = {name: editName}
       let response = await editUser(data)
+      setLoading("")
       if(response.message=="success"){
         console.log(response);
         
@@ -80,8 +83,10 @@ const Profile = () => {
         setEdit(false)
       }
     }else if(editName==userData.name && editEmail!==userData.email){
+      setLoading("saveuser")
       let data = {email: editEmail}
       let response = await editUser(data)
+      setLoading("")
       if(response.message=="success"){
         localStorage.setItem("user", JSON.stringify(response.user))
         toast.success("Your email updated")
@@ -113,7 +118,13 @@ const Profile = () => {
               <div><h5 className='d-inline-block'>Name:</h5> </div>
               <div className='mb-3'>
                 <button className='btn me-3 text-white bg-danger fs-6' onClick={()=>{setEdit(!edit)}}>Cancle</button>
-                <button className='btn me-3 text-white bg-main fs-6' onClick={()=>{editData()}}>Save</button>
+                <button className='btn me-3 text-white bg-main fs-6' onClick={()=>{editData()}}>
+                  {loading==="saveuser"? (
+                    <i className="fa-solid fa-spinner"></i>
+                  ) : (
+                    "Save"
+                  )}
+                </button>
               </div>
             </div>
             <input className='form-control' onChange={(e)=>{setEditName(e.target.value)}} value={editName}></input>
@@ -227,7 +238,11 @@ const Profile = () => {
             className="btn bg-main text-white mt-4 "
             type="submit"
           >
-            Save
+            {loading==="saveaddrr"? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
+              "Save"
+            )}
           </button>
           </div>
         </form>
@@ -238,17 +253,7 @@ const Profile = () => {
           {adresses.length > 0? (
             adresses.map((address)=>{
             return(
-              <div key={address._id} style={{borderRadius: 10}} className='w-100 mt-3 p-3 border border-1 text-center'>
-                <h5>{address.name}</h5>
-                <div className='d-flex justify-content-between align-items-center mt-3'>
-                  <p>City: {address.city}</p>
-                  <p>{address.details}</p>
-                </div>
-                <div className='d-flex justify-content-between align-items-center mt-2'>
-                  <p className='my-auto'>Phone: {address.phone}</p>
-                  <button className='btn fs text-white bg-danger' onClick={()=>{deleteAddr(address._id)}}><i class="fa-solid fa-trash"></i></button>
-                </div>
-              </div>
+              <ProfileAddress key={address._id} address={address}/>
             )
           })) : (<h5 className='mt-5 w-100 text-center'>You have not saved any addresses</h5>) }
           

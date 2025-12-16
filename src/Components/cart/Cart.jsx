@@ -9,6 +9,7 @@ const Cart = () => {
   let { fitchCartCount, clearCart, cart } = useContext(cartContext);
   let [loading, setLoading] = useState(true);
   let [empty, setEmpty] = useState(true);
+  let [emptyLoading, setEmptyLoading] = useState(false)
 
   async function getCartData() {
     let data = await fitchCartCount();
@@ -16,8 +17,10 @@ const Cart = () => {
   }
 
   async function emptyCart() {
+    setEmptyLoading(true)
     await clearCart();
     await getCartData();
+    setEmptyLoading(false)
     setEmpty(true);
     toast.success("Your cart is empty now");
   }
@@ -85,7 +88,11 @@ const Cart = () => {
                 emptyCart();
               }}
             >
-              <i className="fa-solid fa-trash-can"></i> Empty Cart
+              {emptyLoading? (
+                <i className="fa-solid fa-spinner"></i>
+              ) : (
+                <><i className="fa-solid fa-trash-can"></i> Empty Cart</>
+              )}
             </button>
             <p className="text-main my-auto" style={{ fontSize: 24}}>
               Total: {cart.data?.totalCartPrice} EGP

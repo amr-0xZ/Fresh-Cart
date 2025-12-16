@@ -1,25 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { cartContext } from "../../Contexts/CartContext";
 import { toast } from "react-toastify";
 
 const CartItem = ({ product, getCartData }) => {
   let { addToCart, oneLessItem, removeProduct } = useContext(cartContext);
+  let [loading, setLoading] = useState("")
 
   async function addItemToCart(id) {
+    setLoading("plus")
     await addToCart(id);
+    setLoading("")
     await getCartData();
     toast.success("One more " + product.product.title + " added to your cart");
   }
 
   async function minusItem(productId, currentCount) {
+    setLoading("minus")
     await oneLessItem(productId, currentCount);
+    setLoading("")
     await getCartData();
     toast.success("Removed one " + product.product.title + " from your cart");
   }
 
   async function removeCartProduct(productId) {
+    setLoading("remove")
     let data = await removeProduct(productId);
     await getCartData();
+    setLoading("")
     console.log(data);
 
     toast.success(product.product.title + "removed from your cart");
@@ -43,7 +50,13 @@ const CartItem = ({ product, getCartData }) => {
                 removeCartProduct(product.product._id);
               }}
             >
+            {loading==="remove"? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
+              <>
               <i className="fa-solid fa-trash-can text-redd"></i> Remove
+              </>
+            )}
             </button>
           </div>
           <div className="py-4 ms-auto text-center">
@@ -53,7 +66,11 @@ const CartItem = ({ product, getCartData }) => {
                 addItemToCart(product.product._id);
               }}
             >
+            {loading==="plus"? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
               <i className="fa-solid fa-plus"></i>
+            )}
             </button>
             <p className="mx-3" style={{ margin: "16px" }}>
               {product.count}
@@ -64,7 +81,11 @@ const CartItem = ({ product, getCartData }) => {
                 minusItem(product.product._id, product.count);
               }}
             >
+            {loading==="minus"? (
+              <i className="fa-solid fa-spinner"></i>
+            ) : (
               <i className="fa-solid fa-minus"></i>
+            )}
             </button>
           </div>
         </div>
