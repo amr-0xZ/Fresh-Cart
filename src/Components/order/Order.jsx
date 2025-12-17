@@ -35,13 +35,13 @@ const Order = () => {
       .min(5, "Must be at least 5 characters long.")
       .max(15, "Cannot exceed 15 characters.")
       .required()
-      .matches(/^[a-zA-Z0-9\s.,!?'"-]*$/, "Contains invalid characters."),
+      .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, "Contains invalid characters."),
     details: Yup.string()
       .required("This field is required.")
       .min(5, "Must be at least 5 characters long.")
       .max(100, "Cannot exceed 100 characters.")
       .trim("Leading and trailing spaces are not allowed.")
-      .matches(/^[a-zA-Z0-9\s.,!?'"-]*$/, "Contains invalid characters."),
+      .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, "Contains invalid characters."),
     method: Yup.string().required(),
   });
 

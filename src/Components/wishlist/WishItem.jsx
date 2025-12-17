@@ -36,7 +36,7 @@ const WishItem = ({product}) => {
     <div className=" bg-light mt-4 border-1 shadow p-3">
         <div className="row">
           <div className="col-md-3">
-            <img className="w-100 " src={product.imageCover} alt="" />
+            <img className="w-75 " src={product.imageCover} alt="" />
           </div>
           <div className="col-md-9">
             <div className="w-100 pt-5 pb-3">
