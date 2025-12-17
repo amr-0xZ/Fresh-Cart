@@ -1,18 +1,21 @@
 import React from 'react'
 import OrderCartItem from './OrderCartItem'
+import { useTranslation } from 'react-i18next'
 
 const OrdersItem = ({order}) => {
     let orderItems = order.cartItems
 
-  return (
+    const { t } = useTranslation()
+
+    return (
         <div className="card order-card mb-4 shadow">
             
             <div className="d-flex flex-wrap justify-content-between align-items-center order-header">
                 <div>
-                    <span className="text-muted small">Order ID</span>
+                    <span className="text-muted small">{t('orders.orderId')}</span>
                     <h6 className="mb-0">{order.id}</h6> </div>
                 <div>
-                    <span className="text-muted small">Date Placed</span>
+                    <span className="text-muted small">{t('orders.datePlaced')}</span>
                     <h6 className="mb-0">{new Date(order.createdAt).toLocaleDateString('en-US',{
                         year: 'numeric',
                         month: 'long',
@@ -20,7 +23,7 @@ const OrdersItem = ({order}) => {
                     })}</h6>
                 </div>
                 <div className=''>
-                    <span className="text-muted small">Address</span>
+                    <span className="text-muted small">{t('orders.address')}</span>
                     <h6 className="mb-0">{order.shippingAddress.details+"-"+order.shippingAddress.city}</h6>
                 </div>
                 <div>
@@ -28,7 +31,7 @@ const OrdersItem = ({order}) => {
                         {order.paymentMethodType}
                     </span>
                     <span className="badge bg-primary bg-opacity-10 text-primary status-badge">
-                        {order.isDelivered? "Delivered" : "Processing"}
+                        {order.isDelivered? t('orders.delivered') : t('orders.processing')}
                     </span>
                 </div>
                 
@@ -44,11 +47,10 @@ const OrdersItem = ({order}) => {
 
             <div className="d-flex justify-content-between align-items-center order-footer">
                 <div>
-                    <span className="text-muted me-2">Total Amount:</span>
-                    <span className="fs-5 fw-bold text-success">{order.totalOrderPrice} EGP</span>
+                    <span className="text-muted me-2">{t('orders.totalAmount',{total: order.totalOrderPrice})}</span>
                 </div>
                 <div>
-                    <button className="btn btn-success bg-main btn-sm">Track Order</button>
+                    <button className="btn btn-success bg-main btn-sm">{t('buttons.trackOrder')}</button>
                 </div>
             </div>
 

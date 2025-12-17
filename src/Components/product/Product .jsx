@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import { cartContext } from "../../Contexts/CartContext";
+import { useTranslation } from 'react-i18next';
 
 const Product = ({ product }) => {
   let { authed } = useContext(authContext);
@@ -10,6 +11,7 @@ const Product = ({ product }) => {
   let productPath = authed ? "/product/" : "/guest/product/";
   let [liked, setLiked] = useState(false)
   let [loading, setLoading] = useState(false)
+  const { t } = useTranslation();
 
   console.log(product);
   
@@ -26,7 +28,7 @@ const Product = ({ product }) => {
     console.log(data);
     setLoading(false)
     toast.success(
-      product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+      t('messages.addedToCart', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );
   }
 
@@ -35,7 +37,7 @@ const Product = ({ product }) => {
     let data = await addToWishlist(id);
     console.log(data);
     toast.success(
-      product.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
+      t('messages.addedToWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );
   }
 
@@ -44,7 +46,7 @@ const Product = ({ product }) => {
     let data = await remFromWishlist(id);
     console.log(data);
     toast.success(
-      product.title.split(" ").slice(0, 2).join(" ") + " removed from your wish list"
+      t('messages.removedFromWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );
   }
 
@@ -73,7 +75,7 @@ const Product = ({ product }) => {
                    <div className="action-overlay my-3">
                     {authed? (
                       liked? (
-                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title="Remove from Wishlist"
+                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title={t('buttons.removeFromWishlist')}
                           onClick={() => {
                            remProductFromWish(product._id);
                           }}
@@ -81,7 +83,7 @@ const Product = ({ product }) => {
                           <i class="fa-solid fa-heart text-danger"></i>
                         </button>
                         ) : (
-                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title="Add to Wishlist"
+                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title={t('buttons.addToWishlist')}
                           onClick={() => {
                            addProductToWish(product._id);
                           }}
@@ -92,7 +94,7 @@ const Product = ({ product }) => {
                       )
                     ) : ("")}
                       <Link to={productPath + product._id}>
-                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title="View Details">
+                        <button className="btn btn-sm btn-light rounded-circle shadow-sm me-2" title={t('buttons.viewDetails')}>
                           <i className="fa-regular fa-eye text-dark"></i>
                         </button>
                       </Link>
@@ -119,14 +121,15 @@ const Product = ({ product }) => {
                   {/* Rating Stars */}
                   <div className="d-flex align-items-center mb-3">
                     <i className="fa-solid fa-star text-warning small me-1"></i>
-                    <span className="small text-muted">{product.ratingsAverage} Rating</span>
+                    <span className="small text-muted">{product.ratingsAverage} {t('product.rating')}</span>
                   </div>
 
                   {/* Price & Add Button */}
                   <div className="d-flex justify-content-between align-items-center">
-                    <span className="h5 fw-bold mb-0 text-dark">{product.price} EGP</span>
+                      <span className=" fw-bold mb-0 text-dark">{t('product.price', { price: product.price })}</span>
                   {authed? (
-                    <button className="btn btn-success-theme btn-sm"
+                    <button className="btn btn-success-theme btn-sm w-auto"
+                      style={{}}
                       onClick={() => {
                         addProductToCart(product._id);
                       }}
@@ -135,7 +138,7 @@ const Product = ({ product }) => {
                       <i className="fa-solid fa-spinner"></i>
                     ) : (
                       <>
-                      <i className="fa-solid fa-cart-arrow-down"></i> Add
+                      <i className="fa-solid fa-cart-arrow-down"></i> {t('buttons.add')}
                       </>
                     )}
                     </button>
@@ -143,7 +146,7 @@ const Product = ({ product }) => {
                     <Link className="btn btn-success-theme btn-sm"
                       to={"/guest/login"}
                     >
-                       <i className="fa-solid fa-cart-arrow-down"></i> Login
+                       <i className="fa-solid fa-cart-arrow-down"></i> {t('buttons.login')}
                     </Link>
                   )}
                   </div>

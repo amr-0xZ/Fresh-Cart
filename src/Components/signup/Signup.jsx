@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Signup = () => {
   const navegate = useNavigate();
@@ -51,13 +52,13 @@ const Signup = () => {
         setLoading(false)
       });
   }
-
+  const { t } = useTranslation();
   return (
     <div className="min-vh-100">
       <div className="w-75 mx-auto my-5 text-center">
-        <h2>Register Now:</h2>
+        <h2>{t('auth.registerTitle')}</h2>
         <form className="mt-5 p-5 shadow text-start" style={{borderRadius: 10}} action="" onSubmit={register.handleSubmit}>
-          <label htmlFor="Name">Name:</label>
+          <label htmlFor="Name">{t('auth.name')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -77,7 +78,7 @@ const Signup = () => {
             ""
           )}
 
-          <label htmlFor="Email">Email:</label>
+          <label htmlFor="Email">{t('auth.email')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -99,7 +100,7 @@ const Signup = () => {
             ""
           )}
 
-          <label htmlFor="Password">Password:</label>
+          <label htmlFor="Password">{t('auth.password')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -123,7 +124,7 @@ const Signup = () => {
             ""
           )}
 
-          <label htmlFor="rePassword">Re Enter Password:</label>
+          <label htmlFor="rePassword">{t('auth.confirmPassword')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -151,7 +152,7 @@ const Signup = () => {
 
 
           <div className="d-flex justify-content-between align-items-center mt-5">
-          <button
+            <button
             disabled={!(register.dirty && register.isValid)}
             className="btn bg-main text-white"
             type="submit"
@@ -159,12 +160,12 @@ const Signup = () => {
             {loading? (
               <i className="fa-solid fa-spinner"></i>
             ) : (
-              "Sign up"
+              t('buttons.signUp')
             )}
           </button>
 
           <div className=" text-center">
-            <p>Do you have account?  <Link to={"/guest/login"}><span className="text-main">Login</span></Link></p>
+            <p><Link to={"/guest/login"}><span className="text-main">{t('buttons.login')}</span></Link></p>
           </div>
           </div>
 

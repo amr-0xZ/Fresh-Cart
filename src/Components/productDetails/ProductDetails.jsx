@@ -5,6 +5,7 @@ import { PropagateLoader } from "react-spinners";
 import { authContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import { cartContext } from "../../Contexts/CartContext";
+import { useTranslation } from 'react-i18next';
 
 const ProductDetails = () => {
   let params = useParams();
@@ -17,6 +18,7 @@ const ProductDetails = () => {
   let [emptyStars, setEmptyStars] = useState(0)
   let [liked, setLiked] = useState(false)
   let [addLoading, setAddLoading] = useState(false)
+  const { t } = useTranslation();
 
 
   function wishChick(id){
@@ -40,7 +42,7 @@ const ProductDetails = () => {
     console.log(data);
     setAddLoading(false)
     toast.success(
-      product.title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+      t('messages.addedToCart', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );
   }
   
@@ -50,7 +52,7 @@ const ProductDetails = () => {
       let data = await addToWishlist(id);
       console.log(data);
       toast.success(
-        product.title.split(" ").slice(0, 2).join(" ") + " added to your wish list"
+        t('messages.addedToWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
       );
   }
 
@@ -60,7 +62,7 @@ const ProductDetails = () => {
       let data = await remFromWishlist(id);
       console.log(data);
       toast.success(
-        product.title.split(" ").slice(0, 2).join(" ") + " removed from your wish list"
+        t('messages.removedFromWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
       );
   }
 
@@ -113,21 +115,21 @@ const ProductDetails = () => {
               ))
             ) : ("")}
             {halfStar? (
-              <i className="fa-solid fa-star-half-stroke text-warning" />
+              <i className="fa-solid fa-star-half-stroke text-warning flip-in-rtl" />
             ) : ("")}
             {emptyStars>0? (
               Array.from({length: emptyStars}).map((_,i)=>(
                 <i key={i} class="fa-regular fa-star text-warning"></i>
               ))
             ) : ("")}
-            <span className="ms-1 text-muted small">{product.ratingsAverage}</span>
+            <span className="ms-1 text-muted small">{product.ratingsAverage} {t('product.rating')}</span>
           </div>
           <span className="text-muted small border-start ps-3">
-            <i className="fa-solid fa-basket-shopping me-1" /> {product.sold} Sold
+            <i className="fa-solid fa-basket-shopping me-1" /> {product.sold} {t('product.sold')}
           </span>
         </div>
         <div className="mb-4">
-          <span className="h2 fw-bold text-success-theme">{product.price} EGP</span>
+          <span className="h2 fw-bold text-success-theme">{t('product.price', { price: product.price })}</span>
         </div>
         <p className="text-secondary mb-4" style={{lineHeight: '1.6'}}>
           {product.description}
@@ -135,26 +137,26 @@ const ProductDetails = () => {
         <hr className="text-muted my-4" />
         {authed ? (
         <div className="d-flex gap-2">
-          <button className="btn btn-success-theme flex-grow-1" onClick={() => {
+            <button className="btn btn-success-theme flex-grow-1" onClick={() => {
                 addProductToCart(product._id);
               }}>
             {addLoading? (
               <i className="fa-solid fa-spinner"></i>
             ) : (
               <>
-              <i className="fa-solid fa-cart-plus me-2" /> Add to Cart
+              <i className="fa-solid fa-cart-plus me-2" /> {t('buttons.addToCart')}
               </>
             )}
           </button>
 
           {liked? (
-            <button className="btn text-white bg-danger px-3" title="Remove from Wishlist" onClick={() => {
+            <button className="btn text-white bg-danger px-3" title={t('buttons.removeFromWishlist')} onClick={() => {
                   remProductFromWish(product._id);
                 }}>
               <i className="fa-solid fa-heart" />
             </button>
           ) : (
-            <button className="btn text-white bg-danger px-3" title="Add to Wishlist" onClick={() => {
+            <button className="btn text-white bg-danger px-3" title={t('buttons.addToWishlist')} onClick={() => {
                   addProductToWish(product._id);
                 }}>
               <i className="fa-regular fa-heart" />
@@ -165,8 +167,8 @@ const ProductDetails = () => {
             ) : (
               <Link to={"/guest/login"}
               >
-              <button className="btn text-white bg-main px-3 w-25">
-                Login To Buy
+              <button className="btn text-white bg-main px-3 w-auto">
+                {t('buttons.loginToBuy')}
               </button>
               </Link>
           )}

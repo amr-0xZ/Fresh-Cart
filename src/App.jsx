@@ -17,8 +17,25 @@ import Order from "./Components/order/Order";
 import AllOrders from "./Components/orders/AllOrders";
 import Profile from "./Components/profile/Profile";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
+import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
 
 function App() {
+
+  const { i18n } = useTranslation();
+
+  useEffect(()=>{
+    const dir = i18n.dir()
+    document.dir = dir;
+    document.documentElement.lang = i18n.language;
+    const bootStrapLink = document.getElementById('bootstrap-css')
+    if(dir==='rtl'){
+      bootStrapLink.href = '/node_modules/bootstrap/dist/css/bootstrap.rtl.min.css'
+    }else{
+      bootStrapLink.href = '/node_modules/bootstrap/dist/css/bootstrap.min.css'
+    }
+  },[i18n.language])
+
   const routs = createBrowserRouter([
     {
       path: "/",

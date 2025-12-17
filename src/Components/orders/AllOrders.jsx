@@ -3,6 +3,7 @@ import { authContext } from "../../Contexts/AuthContext";
 import {cartContext} from "../../Contexts/CartContext"
 import { PropagateLoader } from "react-spinners";
 import OrdersItem from "./OrdersItem";
+import { useTranslation } from 'react-i18next';
 
 const AllOrders = () => {
 
@@ -11,6 +12,7 @@ const AllOrders = () => {
   let [orders, setOrders] = useState([])
   let [loading, setLoading] = useState(true);
   let [empty, setEmpty] = useState(false)
+  const { t } = useTranslation();
 
 
   async function getOrders(id) {
@@ -49,18 +51,19 @@ const AllOrders = () => {
         return( 
         <div className="min-vh-100">
           <div className="w-100 d-flex justify-content-center mt-5">
-            <h3 className="">You have not made any orders yet</h3>
-          </div>
+              <h3 className="">{t('orders.noOrders')}</h3>
+            </div>
         </div>)
       }else{
         return(
           <div className="min-vh-100">
           <div className="container py-5 min-vh-100">
-          <h2 className="mb-4">Your Orders:</h2>
+          <div className="w-100 text-center">
+            <h2 className="mb-4">{t('orders.yourOrders')}</h2>
+          </div>
             {orders.map((order)=>{
           return <OrdersItem key={order._id} order={order}/>
         })}
-
           </div>
           
           </div>

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import ProfileAddress from './ProfileAddress';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
   let {getAdresses, adresses,editUser, addAddress} = useContext(authContext)
@@ -13,13 +14,14 @@ const Profile = () => {
   let [editName, setEditName] = useState(userData.name)
   let [editEmail, setEditEmail] = useState(userData.email)
   let [loading, setLoading] = useState("")
+  const {t} = useTranslation()
 
 
   async function saveAddr(values) {
     setLoading("saveaddrr")
     await addAddress(values)
     setLoading("")
-    toast.success("New address saved")
+    toast.success(t('profile.newAddressSaved'))
     setAddressForm(!addressForm)
   }  
 
@@ -67,7 +69,7 @@ const Profile = () => {
       setLoading("")
       if(response.message=="success"){
         localStorage.setItem("user", JSON.stringify(response.user))
-        toast.success("Your data updated")
+        toast.success(t('profile.yourDataUpdated'))
         setEdit(false)
       }
     }else if(editName!==userData.name && editEmail==userData.email){
@@ -79,7 +81,7 @@ const Profile = () => {
         console.log(response);
         
         localStorage.setItem("user", JSON.stringify(response.user))
-        toast.success("Your name updated")
+        toast.success(t('profile.yourNameUpdated'))
         setEdit(false)
       }
     }else if(editName==userData.name && editEmail!==userData.email){
@@ -89,7 +91,7 @@ const Profile = () => {
       setLoading("")
       if(response.message=="success"){
         localStorage.setItem("user", JSON.stringify(response.user))
-        toast.success("Your email updated")
+        toast.success(t('profile.yourEmailUpdated'))
         setEdit(false)
       }
     }
@@ -115,34 +117,39 @@ const Profile = () => {
           {edit? (
           <div className='form'>
             <div className='d-flex justify-content-between align-items-center'>
-              <div><h5 className='d-inline-block'>Name:</h5> </div>
+              <div><h5 className='d-inline-block'>{t('auth.name')}:</h5> </div>
               <div className='mb-3'>
-                <button className='btn me-3 text-white bg-danger fs-6' onClick={()=>{setEdit(!edit)}}>Cancle</button>
+                <button className='btn me-3 text-white bg-danger fs-6' onClick={()=>{setEdit(!edit)}}>{t('buttons.cancel')}</button>
                 <button className='btn me-3 text-white bg-main fs-6' onClick={()=>{editData()}}>
                   {loading==="saveuser"? (
                     <i className="fa-solid fa-spinner"></i>
                   ) : (
-                    "Save"
+                    t('buttons.save')
                   )}
                 </button>
               </div>
             </div>
             <input className='form-control' onChange={(e)=>{setEditName(e.target.value)}} value={editName}></input>
-              <div><h5 className='d-inline-block mt-3'>Email:</h5> <input className='d-inline-block form-control' onChange={(e)=>{setEditEmail(e.target.value)}} value={editEmail}></input></div>
+              <div><h5 className='d-inline-block mt-3'>{t('auth.email')}:</h5> <input className='d-inline-block form-control' onChange={(e)=>{setEditEmail(e.target.value)}} value={editEmail}></input></div>
           </div>
           ) : (
           <div>
-            <div className='d-flex justify-content-between align-items-center'>
-              <div><h5 className='d-inline-block'>Name:</h5> <p className='d-inline-block'>{userData.name}</p></div>
-              <button className='btn me-3 text-white bg-main fs-6' onClick={()=>{setEdit(!edit)}}><i class="fa-regular fa-pen-to-square"></i></button>
+            <div className='d-flex justify-content-between '>
+              <div className=''>
+                <div className='w-100'>
+                <h5 className='d-inline-block text-start'>{t('auth.name')}:</h5> <p className='d-inline-block'>{userData.name}</p>
+                </div>
+                <div><h5 className='d-inline-block text-start'>{t('auth.email')}:</h5> <p className='d-inline-block'>{userData.email}</p></div>
+              </div>
+              <button className='btn me-3 text-white bg-main fs-6 h-50' onClick={()=>{setEdit(!edit)}}><i class="fa-regular fa-pen-to-square"></i></button>
             </div>
-              <div><h5 className='d-inline-block'>Email:</h5> <p className='d-inline-block'>{userData.email}</p></div>
+              
           </div>)}
 
 
             <div className='d-flex justify-content-between align-items-center mt-5'>
               <div>
-                <h5 className='d-inline-block'>Addresses:</h5> 
+                <h5 className='d-inline-block'>{t('order.savedAddresses')}</h5> 
               </div>
               <button className='btn me-3 text-white bg-main fs-6' onClick={()=>{setAddressForm(!addressForm)}}><i class="fa-solid fa-plus"></i></button>
             </div>
@@ -152,7 +159,7 @@ const Profile = () => {
             <div style={{borderRadius: 10}} className='w-100 mt-3 p-3 border border-1'>
         <form className="mt-4" action="" onSubmit={register.handleSubmit}>
 
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">{t('auth.name')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.name && register.touched.name
@@ -172,7 +179,7 @@ const Profile = () => {
             ""
           )}
 
-          <label htmlFor="phone">Phone:</label>
+          <label htmlFor="phone">{t('order.phone')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.phone && register.touched.phone
@@ -191,7 +198,7 @@ const Profile = () => {
           ) : (
             ""
           )}
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city">{t('order.city')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.city && register.touched.city ? "is-invalid" : ""
@@ -208,7 +215,7 @@ const Profile = () => {
           ) : (
             ""
           )}
-          <label htmlFor="details">Details:</label>
+          <label htmlFor="details">{t('order.details')}</label>
           <textarea
             className={`form-control mb-3 ${
               register.errors.details && register.touched.details
@@ -231,7 +238,7 @@ const Profile = () => {
             className="btn bg-danger text-white mt-4 "
             onClick={()=>{setAddressForm(!addressForm)}}
           >
-            Cancle
+            {t('buttons.cancel')}
           </button>
             <button
             disabled={!(register.dirty && register.isValid)}
@@ -241,7 +248,7 @@ const Profile = () => {
             {loading==="saveaddrr"? (
               <i className="fa-solid fa-spinner"></i>
             ) : (
-              "Save"
+              t('buttons.save')
             )}
           </button>
           </div>
@@ -255,7 +262,7 @@ const Profile = () => {
             return(
               <ProfileAddress key={address._id} address={address}/>
             )
-          })) : (<h5 className='mt-5 w-100 text-center'>You have not saved any addresses</h5>) }
+          })) : (<h5 className='mt-5 w-100 text-center'>{t('profile.youHaveNoAddresses')}</h5>) }
           
           
 

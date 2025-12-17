@@ -3,8 +3,13 @@ import { Outlet } from "react-router-dom";
 import logo from "../assets/images/freshcart-logo.svg";
 import { NavLink } from "react-router-dom";
 import Footer from "../Components/footer/Footer";
+import LangSwitch from "../Components/langSwitch/LangSwitch";
+import { useTranslation } from "react-i18next";
 
 const AuthLayout = () => {
+
+  const {t} = useTranslation()
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -31,23 +36,24 @@ const AuthLayout = () => {
                   aria-current="page"
                   to="/guest/home"
                 >
-                  Home
+                  {t('nav.home')}
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/guest/products">
-                  Products
+                  {t('nav.products')}
                 </NavLink>
               </li>
             </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
                   aria-current="page"
                   to="/guest/login"
                 >
-                  Login
+                  {t('nav.login')}
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -56,8 +62,11 @@ const AuthLayout = () => {
                   aria-current="page"
                   to="/guest/signup"
                 >
-                  Signup
+                  {t('nav.signup')}
                 </NavLink>
+              </li>
+              <li className="nav-item">
+                  <LangSwitch/>
               </li>
             </ul>
           </div>

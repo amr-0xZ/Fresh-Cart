@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "profile": "Profile",
+    "orders": "Orders",
+    "allOrders": "All Orders",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "welcome": "Hi"
+  },
+  "product": {
+    "sold": "Sold",
+    "price": "{{price}} EGP",
+    "description": "Description",
+    "reviews": "Reviews",
+    "rating": "Rating"
+  },
+  "messages": {
+    "addedToCart": "{{title}} added to your cart",
+    "addedToWishlist": "{{title}} added to your wish list",
+    "loading": "Loading...",
+    "notFound": "Not Found",
+    "cartEmptied": "Your cart is empty now",
+    "resetCodeSent": "Reset code sent to your email",
+    "resetCodeInvalid": "Reset code is invalid or has expired",
+    "newPasswordSaved": "Your new password saved",
+    "resetCodeExpired": "Reset code has expired",
+    "accountCreated": "Account created successfully",
+    "removedFromWishlist": "{{title}} removed from your wish list"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Minimum length is {{min}} characters"
+  },
+  "general": {
+    "close": "Close",
+    "search": "Search",
+    "actions": "Actions"
+  }
+  ,"home": {
+    "shopByCategory": "Shop by Category",
+    "trustedBrands": "Our Trusted Brands"
+  },
+  "cart": {
+    "title": "Shop Cart",
+    "emptyTitle": "Your Cart Is Empty",
+    "goShopping": "Go shopping?",
+    "emptyButton": "Empty Cart",
+    "total": "Total: {{total}} EGP",
+    "createOrder": "Create Order"
+  },
+  "footer": {
+    "enterYourEmail": "Enter your email:",
+    "vcodeSentInfo": "We sent a 6 digits code to your email",
+    "enterNewPassword": "Enter new password",
+    "passwordRule1": "-Password must start with capital letter.",
+    "passwordRule2": "-At least 7 characters long.",
+    "getApp": "Get the FreshCart app",
+    "sendLink": "We will send you a link, open it on your phone to download the app.",
+    "emailPlaceholder": "Email ..",
+    "shareApp": "Share App Link",
+    "paymentPartners": "Payment Partners",
+    "getDeliveries": "Get deliveries with FreshCart"
+  },
+  "cartItem": {
+    "price": "Price: {{price}}",
+    "remove": "Remove",
+    "oneMore": "One more {{title}} added to your cart",
+    "removedOne": "Removed one {{title}} from your cart",
+    "removedFromCart": "{{title}} removed from your cart"
+  },
+  "products": {
+    "allProducts": "All Products",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search for products...",
+    "brand": "Brand",
+    "category": "Category",
+    "noMatches": "No products found matching filters.",
+    "resetFilters": "Reset Filters",
+    "allOption": "All"
+  },
+  "auth": {
+    "loginTitle": "Login To Your Account",
+    "registerTitle": "Register Now",
+    "getVerification": "Get Verification Code",
+    "verifyCode": "Verify Code",
+    "savePassword": "Save Password",
+    "forgetPasswordTitle": "Forget Password",
+    "verifyCodeTitle": "Verify Code",
+    "resetPasswordTitle": "Reset Password",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "buttons": {
+    "add": "Add",
+    "login": "Login",
+    "signUp": "Sign up",
+    "use": "Use",
+    "trackOrder": "Track Order",
+    "order": "Order",
+    "cancel": "Cancel",
+    "save": "Save",
+    "addToCart": "Add to Cart",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "loginToBuy": "Login To Buy",
+    "viewDetails": "View Details",
+    "submit": "Submit",
+    "resetPassword": "Reset Password",
+    "continue": "Continue"
+  },
+  "wishlist": {
+    "title": "Wish List",
+    "emptyTitle": "Your Wish List Is Empty",
+    "explore": "Explore Products?",
+    "yourList": "Your Wish List"
+  },
+  "orders": {
+    "noOrders": "You have not made any orders yet",
+    "yourOrders": "Your Orders",
+    "orderId": "Order ID",
+    "datePlaced": "Date Placed",
+    "address": "Address",
+    "delivered": "Delivered",
+    "processing": "Processing",
+    "totalAmount": "Total Amount: {{total}} EGP",
+    "egp":"EGP"
+  },
+  "order": {
+    "enterDetails": "Enter your order details",
+    "phone": "Phone:",
+    "city": "City:",
+    "details": "Details:",
+    "paymentMethod": "Payment method",
+    "cash": "Cash on delivery",
+    "visa": "Online Visa",
+    "savedAddresses": "Saved Addresses",
+    "use": "Use"
+  },
+  "profile": {
+    "newAddressSaved": "New address saved",
+    "yourDataUpdated": "Your data updated",
+    "yourNameUpdated": "Your name updated",
+    "yourEmailUpdated": "Your email updated",
+    "youHaveNoAddresses": "You have not saved any addresses",
+    "oneAddressDeleted": "One address deleted"
+  }
+  ,"labels": {
+    "brand": "Brand:",
+    "category": "Category:",
+    "qty": "Qty:",
+    "phone": "Phone:"
+  }
+}

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 :root {
   --main-color: #0aad0a;
   --light-color: #f0f3f2;
@@ -8,6 +9,15 @@
     rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
   --font-family: "Encode Sans Expanded", sans-serif;
   --rating-color: #ffc908;
+}
+
+[dir="rtl"] {
+  --font-family: 'Cairo', sans-serif;
+}
+
+[dir="rtl"] .flip-in-rtl {
+  transform: scaleX(-1);
+  display: inline-block;
 }
 
 body {
@@ -174,79 +184,89 @@ box-shadow: 0px 0px 50px 25px rgba(28,145,0,0.52);
 /* brands slider */
 
 /* 1. The Window: Hides everything outside the box */
-        .slider-container {
-          overflow: hidden;
-          background: white;
-          padding: 20px 0;
-          white-space: nowrap;
-          position: relative;
-        }
+  .slider-container {
+    overflow: hidden;
+    background: white;
+    padding: 20px 0;
+    white-space: nowrap;
+    position: relative;
+  }
 
-        /* 2. Fade Effect (Optional): Makes sides look faded */
-        .slider-container::before,
-        .slider-container::after {
-          position: absolute;
-          top: 0;
-          width: 100px;
-          height: 100%;
-          content: "";
-          z-index: 2;
-        }
-        .slider-container::before {
-          left: 0;
-          background: linear-gradient(to right, white, transparent);
-        }
-        .slider-container::after {
-          right: 0;
-          background: linear-gradient(to left, white, transparent);
-        }
+  /* 2. Fade Effect (Optional): Makes sides look faded */
+  .slider-container::before,
+  .slider-container::after {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+  .slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+  }
+  .slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+  }
 
-        /* 3. The Track: Holds all items in a long horizontal line */
-        .slider-track {
-          display: flex;
-          width: calc(200px * 40); /* Width = (Slide Width * Total Items * 2) */
-          animation: scroll 40s linear infinite; /* The Magic: 20s speed */
-        }
+  /* 3. The Track: Holds all items in a long horizontal line */
+  .slider-track {
+    display: flex;
+    width: calc(200px * 40);
+    animation: scroll 40s linear infinite;
+  }
 
-        /* 4. The Individual Slide */
-        .slide {
-          width: 200px; /* Fixed width for consistency */
-          flex-shrink: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 0 15px;
-        }
+  /* RTL Direction */
+  [dir="rtl"] .slider-track {
+    animation: scroll-rtl 40s linear infinite;
+  }
 
-        .brand-img {
-          width: 100%;
-          height: 80px;
-          object-fit: contain; /* Ensures logo isn't stretched */
-          margin-bottom: 10px;
-          transition: transform 0.3s;
-        }
-        
-        /* Hover Effect: Pause animation and zoom logo */
-        .slider-track:hover {
-          animation-play-state: paused;
-        }
-        
-        .slide:hover .brand-img {
-          transform: scale(1.1);
-        }
+  /* 4. The Individual Slide */
+  .slide {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+  }
 
-        .brand-name {
-          font-size: 0.9rem;
-          color: #6c757d;
-          font-weight: 500;
-        }
+  .brand-img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+  }
+  
+  /* Hover Effect: Pause animation and zoom logo */
+  .slider-track:hover {
+    animation-play-state: paused;
+  }
+  
+  .slide:hover .brand-img {
+    transform: scale(1.1);
+  }
 
-        /* 5. The Animation Keyframes */
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); } /* Move exactly half way (the length of the first set) */
-        }
+  .brand-name {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  /* 5. The Animation Keyframes */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-rtl {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
+  }
 
 
 /* Categories styling */
@@ -313,3 +333,4 @@ box-shadow: 0px 0px 50px 25px rgba(28,145,0,0.52);
         .product-card:hover .action-overlay {
             right: 15px; /* Slide in */
         }
+

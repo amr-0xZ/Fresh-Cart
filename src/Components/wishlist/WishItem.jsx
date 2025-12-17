@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { cartContext } from "../../Contexts/CartContext";
 import { toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
 
 
 const WishItem = ({product}) => {
     let { getWishlist, remFromWishlist, wishlist, addToCart } = useContext(cartContext);
     let [loading, setLoading] = useState("");
+    const { t } = useTranslation();
 
   async function addProductToCart(id, title) {
     setLoading("add")
@@ -13,7 +15,7 @@ const WishItem = ({product}) => {
     console.log(data);
     setLoading("")
     toast.success(
-      title.split(" ").slice(0, 2).join(" ") + " added to your cart"
+      t('messages.addedToCart', { title: title.split(" ").slice(0, 2).join(" ") })
     );
   }
 
@@ -24,7 +26,7 @@ const WishItem = ({product}) => {
     setLoading("")
     if(data){
       toast.success(
-      title.split(" ").slice(0, 2).join(" ") + " removed from wish list"
+      t('messages.removedFromWishlist', { title: title.split(" ").slice(0, 2).join(" ") })
     );
     }
   }
@@ -60,12 +62,12 @@ const WishItem = ({product}) => {
                 <i className="fa-solid fa-spinner"></i>
               ) : (
                 <>
-                <i className="fa-regular fa-trash-can"></i> Remove
+                <i className="fa-regular fa-trash-can"></i> {t('cartItem.remove')}
                 </>
               )}
               </button>
               <button
-                className="btn bg-main text-white w-25 mt-4"
+                className="btn bg-main text-white w-auto mt-4"
                 onClick={() => {
                   addProductToCart(product._id, product.title);
                 }}
@@ -74,7 +76,7 @@ const WishItem = ({product}) => {
                 <i className="fa-solid fa-spinner"></i>
               ) : (
                 <>
-                <i className="fa-solid fa-cart-arrow-down"></i> Add to cart
+                <i className="fa-solid fa-cart-arrow-down"></i> {t('buttons.addToCart')}
                 </>
               )}
               </button>

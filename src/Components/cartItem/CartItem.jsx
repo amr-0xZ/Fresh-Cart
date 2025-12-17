@@ -1,17 +1,19 @@
 import React, { useContext, useState } from "react";
 import { cartContext } from "../../Contexts/CartContext";
 import { toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
 
 const CartItem = ({ product, getCartData }) => {
   let { addToCart, oneLessItem, removeProduct } = useContext(cartContext);
   let [loading, setLoading] = useState("")
+  const {t} = useTranslation()
 
   async function addItemToCart(id) {
     setLoading("plus")
     await addToCart(id);
     setLoading("")
     await getCartData();
-    toast.success("One more " + product.product.title + " added to your cart");
+    toast.success(t('cartItem.oneMore',{title: product.product.title}));
   }
 
   async function minusItem(productId, currentCount) {
@@ -19,7 +21,7 @@ const CartItem = ({ product, getCartData }) => {
     await oneLessItem(productId, currentCount);
     setLoading("")
     await getCartData();
-    toast.success("Removed one " + product.product.title + " from your cart");
+    toast.success(t('cartItem.removedOne',{title: product.product.title}));
   }
 
   async function removeCartProduct(productId) {
@@ -29,7 +31,7 @@ const CartItem = ({ product, getCartData }) => {
     setLoading("")
     console.log(data);
 
-    toast.success(product.product.title + "removed from your cart");
+    toast.success(t('cartItem.removedFromCart',{title: product.product.title}));
   }
 
   return (
@@ -42,7 +44,7 @@ const CartItem = ({ product, getCartData }) => {
           <div className="py-3 me-auto">
             <div className="px-3">
               <h5>{product.product.title}</h5>
-              <p className="text-main">Price: {product.price}</p>
+              <p className="text-main">{t('cartItem.price',{price: product.price})}</p>
             </div>
             <button
               className="btn mt-4"
@@ -54,7 +56,7 @@ const CartItem = ({ product, getCartData }) => {
               <i className="fa-solid fa-spinner"></i>
             ) : (
               <>
-              <i className="fa-solid fa-trash-can text-redd"></i> Remove
+              <i className="fa-solid fa-trash-can text-redd"></i> {t('cartItem.remove')}
               </>
             )}
             </button>

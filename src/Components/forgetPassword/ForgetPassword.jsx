@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
 
 const ForgetPassword = () => {
 
@@ -11,6 +12,7 @@ const ForgetPassword = () => {
     let [newPass, setNewPass] = useState("")
     let [loading, setLoading] = useState(false)
     let navegate = useNavigate()
+    const { t } = useTranslation()
 
     async function sendMail(e) {
         e.preventDefault()
@@ -18,7 +20,7 @@ const ForgetPassword = () => {
         await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',{email: email}).then(({data})=>{
             if(data.statusMsg==="success"){
                 setLoading(false)
-                toast.success("Reset code sent to your email")
+                toast.success(t('messages.resetCodeSent'))
                 setStage(2)
             }
         }).catch(({response})=>{
@@ -39,12 +41,12 @@ const ForgetPassword = () => {
             }else{
                 setLoading(false)
                 setVcode("")
-                toast.error("Reset code is invalid or has expired")
+                toast.error(t('messages.resetCodeInvalid'))
             }
         }).catch(()=>{
             setLoading(false)
             setVcode("")
-            toast.error("Reset code is invalid or has expired")
+            toast.error(t('messages.resetCodeInvalid'))
         })
     }
 
@@ -65,14 +67,14 @@ const ForgetPassword = () => {
                 setVcode("")
                 setEmail("")
                 setNewPass("")
-                toast.success("Your new password saved")
+                toast.success(t('messages.newPasswordSaved'))
                 navegate("/guest/login")
             }
         }).catch(({response})=>{
             console.log(response);
             
             setLoading(false)
-            toast.error("Reset code has expired")
+            toast.error(t('messages.resetCodeExpired'))
             setVcode("")
             setNewPass("")
             setStage(1)
@@ -84,15 +86,15 @@ const ForgetPassword = () => {
     <div className="min-vh-100">
       <div className="w-50 mx-auto my-5 text-center">
         <h2>
-            {stage===1&& "Forget Password"}
-            {stage===2&& "Verify Code"}
-            {stage===3&& "Reset Password"}
+            {stage===1&& t('auth.forgetPasswordTitle')}
+            {stage===2&& t('auth.verifyCodeTitle')}
+            {stage===3&& t('auth.resetPasswordTitle')}
         </h2>
         <div className='mt-5 p-5 shadow' style={{borderRadius: 10}}>
             
             {stage===1&& (
             <form className=""  action="" onSubmit={sendMail}>
-                <label htmlFor="Email">Enter your email:</label>
+                <label htmlFor="Email">{t('auth.enterYourEmail')}</label>
                 <input
                 onChange={(e)=>{setEmail(e.target.value)}}
                 className='mb-4 mt-3 form-control w-50 mx-auto text-center'
@@ -110,7 +112,7 @@ const ForgetPassword = () => {
                     {loading? (
                         <i className="fa-solid fa-spinner"></i>
                     ) : (
-                    "Get Verification Code"
+                    t('auth.getVerification')
                     )}
                 </button>
             </form>
@@ -119,7 +121,7 @@ const ForgetPassword = () => {
 
             {stage===2&& (
             <form className=""  action="" onSubmit={sendCode}>
-                <label htmlFor="vcode">We sent a 6 digits code to your email</label>
+                <label htmlFor="vcode">{t('footer.vcodeSentInfo')}</label>
                 <input
                 onChange={(e)=>{setVcode(e.target.value)}}
                 className='mb-4 form-control mt-3 w-25 mx-auto text-center'
@@ -137,11 +139,11 @@ const ForgetPassword = () => {
                         >
                             {loading? (
                                 <i className="fa-solid fa-spinner"></i>
-                            ) : (
-                            "Verify Code"
-                            )}
+                                ) : (
+                                t('auth.verifyCode')
+                                )}
                     </button>
-                    <span className='text-dark position-absolute start-0 bottom-0 cursor-pointer' style={{fontSize: 16}} onClick={()=>{setStage(1); setVcode("")}}><i className="fa-solid fa-arrow-left"></i> Email</span>
+                            <span className='text-dark position-absolute start-0 bottom-0 cursor-pointer' style={{fontSize: 16}} onClick={()=>{setStage(1); setVcode("")}}><i className="fa-solid fa-arrow-left"></i> {t('auth.email')}</span>
                 </div>
             </form>
             )}
@@ -149,7 +151,7 @@ const ForgetPassword = () => {
 
             {stage===3&& (
             <form className=""  action="" onSubmit={sendNewPass}>
-                <label htmlFor="pass">Enter new password:</label>
+                <label htmlFor="pass">{t('footer.enterNewPassword')}</label>
                 <input
                 onChange={(e)=>{setNewPass(e.target.value)}}
                 className=' form-control mt-3 w-75 mx-auto'
@@ -160,8 +162,8 @@ const ForgetPassword = () => {
                 required
                 />
                 <div className='text-start mb-4 w-75 mx-auto' style={{fontSize: 12, marginTop: 3}}>
-                    <p className='my-0'>-Password must start with capital letter.</p>
-                    <p>-At least 7 characters long.</p>
+                    <p className='my-0'>{t('footer.passwordRule1')}</p>
+                    <p>{t('footer.passwordRule2')}</p>
                 </div>
                 <button
                 disabled={!(newPass.length>6&&(newPass.slice(0,1)===newPass.slice(0,1).toUpperCase()))}
@@ -171,7 +173,7 @@ const ForgetPassword = () => {
                     {loading? (
                         <i className="fa-solid fa-spinner"></i>
                     ) : (
-                    "Save Passowrd"
+                    t('auth.savePassword')
                     )}
                 </button>
             </form>

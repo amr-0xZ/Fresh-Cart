@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "cart": "السلة",
+    "wishlist": "قائمة الأمنيات",
+    "profile": "الملف الشخصي",
+    "orders": "الطلبات",
+    "allOrders": "جميع الطلبات",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "welcome": "مرحباً"
+  },
+  "product": {
+    "sold": "تم بيعه",
+    "price": "{{price}} جنيه",
+    "description": "الوصف",
+    "reviews": "التقييمات",
+    "rating": "التقييم"
+  },
+  "messages": {
+    "addedToCart": "تمت إضافة {{title}} إلى سلة التسوق",
+    "addedToWishlist": "تمت إضافة {{title}} إلى قائمة الأمنيات",
+    "loading": "جاري التحميل...",
+    "notFound": "غير موجود",
+    "cartEmptied": "تم تفريغ السلة",
+    "resetCodeSent": "تم إرسال رمز إعادة التعيين إلى بريدك الإلكتروني",
+    "resetCodeInvalid": "رمز إعادة التعيين غير صالح أو انتهت صلاحيته",
+    "newPasswordSaved": "تم حفظ كلمة المرور الجديدة",
+    "resetCodeExpired": "انتهت صلاحية رمز إعادة التعيين",
+    "accountCreated": "تم إنشاء الحساب بنجاح"
+    ,"removedFromWishlist": "تمت إزالة {{title}} من قائمة الأمنيات"
+  },
+  "errors": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "minLength": "الحد الأدنى للطول هو {{min}} أحرف"
+  },
+  "general": {
+    "close": "إغلاق",
+    "search": "بحث",
+    "actions": "إجراءات"
+  }
+  ,"home": {
+    "shopByCategory": "تسوق حسب الفئة",
+    "trustedBrands": "العلامات التجارية الموثوقة"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "emptyTitle": "سلة التسوق فارغة",
+    "goShopping": "تسوق الآن؟",
+    "emptyButton": "تفريغ السلة",
+    "total": "المجموع: {{total}} جنيه",
+    "createOrder": "إنشاء طلب"
+  },
+  "footer": {
+    "getApp": "احصل على تطبيق فرش كارت",
+    "sendLink": "سنرسل لك رابطًا، افتحه على هاتفك لتحميل التطبيق.",
+    "emailPlaceholder": "البريد الإلكتروني ..",
+    "shareApp": "مشاركة رابط التطبيق",
+    "paymentPartners": "شركاء الدفع",
+    "getDeliveries": "احصل على التوصيل مع فرش كارت"
+  },
+  "cartItem": {
+    "price": "السعر: {{price}}",
+    "remove": "إزالة",
+    "oneMore": "تمت إضافة {{title}} إلى سلة التسوق",
+    "removedOne": "تمت إزالة عنصر واحد من {{title}} من سلة التسوق",
+    "removedFromCart": "تمت إزالة {{title}} من سلة التسوق"
+  },
+  "products": {
+    "allProducts": "جميع المنتجات",
+    "searchLabel": "بحث",
+    "searchPlaceholder": "ابحث عن منتجات...",
+    "brand": "الماركة",
+    "category": "الفئة",
+    "noMatches": "لا توجد منتجات تطابق عوامل التصفية.",
+    "resetFilters": "إعادة تعيين المرشحات",
+    "allOption": "الكل"
+  },
+  "auth": {
+    "loginTitle": "تسجيل الدخول إلى حسابك",
+    "registerTitle": "أنشئ حساب الآن",
+    "getVerification": "الحصول على رمز التحقق",
+    "verifyCode": "تحقق من الرمز",
+    "savePassword": "حفظ كلمة المرور",
+    "forgetPasswordTitle": "نسيت كلمة المرور",
+    "verifyCodeTitle": "التحقق من الرمز",
+    "resetPasswordTitle": "إعادة تعيين كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "name": "الاسم",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور"
+    ,"enterYourEmail": "أدخل بريدك الإلكتروني",
+    "vcodeSentInfo": "أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني",
+    "enterNewPassword": "أدخل كلمة المرور الجديدة",
+    "passwordRule1": "-يجب أن تبدأ كلمة المرور بحرف كبير.",
+    "passwordRule2": "-يجب أن تكون 7 أحرف على الأقل."
+  },
+  "buttons": {
+    "add": "أضف",
+    "login": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "use": "استخدام",
+    "trackOrder": "تتبع الطلب",
+    "order": "طلب",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "addToCart": "أضف إلى السلة",
+    "addToWishlist": "أضف إلى قائمة الأمنيات",
+    "removeFromWishlist": "إزالة من قائمة الأمنيات",
+    "loginToBuy": "سجّل الدخول للشراء",
+    "viewDetails": "عرض التفاصيل",
+    "submit": "إرسال",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "continue": "متابعة"
+  },
+  "wishlist": {
+    "title": "قائمة الأمنيات",
+    "emptyTitle": "قائمة الأمنيات فارغة",
+    "explore": "استعرض المنتجات؟",
+    "yourList": "قائمة الأمنيات الخاصة بك"
+  },
+  "orders": {
+    "noOrders": "لم تقم بعمل أي طلبات بعد",
+    "yourOrders": "طلباتك",
+    "orderId": "معرّف الطلب",
+    "datePlaced": "تاريخ الطلب",
+    "address": "العنوان",
+    "delivered": "تم التوصيل",
+    "processing": "قيد المعالجة",
+    "totalAmount": "المبلغ الإجمالي: {{total}} جنيه",
+    "egp":"جنيه"
+  },
+  "order": {
+    "enterDetails": "أدخل تفاصيل الطلب",
+    "phone": "الهاتف",
+    "city": "المدينة",
+    "details": "التفاصيل",
+    "paymentMethod": "طريقة الدفع",
+    "cash": "الدفع عند الاستلام",
+    "visa": "دفع عبر فيزا",
+    "savedAddresses": "العناوين المحفوظة",
+    "use": "استخدام"
+  },
+  "profile": {
+    "newAddressSaved": "تم حفظ العنوان الجديد",
+    "yourDataUpdated": "تم تحديث بياناتك",
+    "yourNameUpdated": "تم تحديث اسمك",
+    "yourEmailUpdated": "تم تحديث بريدك الإلكتروني",
+    "youHaveNoAddresses": "لم تقم بحفظ أي عناوين",
+    "oneAddressDeleted": "تم حذف عنوان واحد"
+  }
+  ,"labels": {
+    "brand": "الماركة:",
+    "category": "الفئة:",
+    "qty": "الكمية:",
+    "phone": "الهاتف:"
+  }
+}

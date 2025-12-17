@@ -3,6 +3,7 @@ import { PropagateLoader } from "react-spinners";
 import Product from "../product/Product ";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { useSearchParams } from "react-router-dom";
 
 const Products = () => {
@@ -28,6 +29,7 @@ const Products = () => {
 
   const uniqueBrands = ["All", ...new Set(data?.data.data.map(p => p.brand.name))];
   const uniqueCategories = ["All", ...new Set(data?.data.data.map(p => p.category.name))];
+  const { t } = useTranslation();
 
 
   const filteredProducts = data?.data.data.filter((product) => {
@@ -54,9 +56,9 @@ const Products = () => {
 
 
 
-      <div className="row mb-5 align-items-center">
-        <div className="col-12 mb-4">
-          <h2 className="fw-bold">All Products</h2>
+          <div className="row mb-5 align-items-center">
+        <div className="col-12 mb-4 text-center">
+          <h2 className="fw-bold">{t('products.allProducts')}</h2>
         </div>
 
 
@@ -66,7 +68,7 @@ const Products = () => {
               
 
               <div className="col-md-6">
-                <label className="form-label small text-muted fw-bold">Search</label>
+                <label className="form-label small text-muted fw-bold">{t('products.searchLabel')}</label>
                 <div className="input-group">
                   <span className="input-group-text bg-white border-end-0">
                     <i className="fa-solid fa-magnifying-glass text-muted"></i>
@@ -74,7 +76,7 @@ const Products = () => {
                   <input 
                     type="text" 
                     className="form-control border-start-0 ps-0" 
-                    placeholder="Search for products..."
+                    placeholder={t('products.searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -83,28 +85,28 @@ const Products = () => {
 
 
               <div className="col-md-3">
-                <label className="form-label small text-muted fw-bold">Brand</label>
+                <label className="form-label small text-muted fw-bold">{t('products.brand')}</label>
                 <select 
                   className="form-select" 
                   value={selectedBrand}
                   onChange={(e) => setSelectedBrand(e.target.value)}
                 >
                   {uniqueBrands.map(brand => (
-                    <option key={brand} value={brand}>{brand}</option>
+                    <option key={brand} value={brand}>{brand === 'All' ? t('products.allOption') : brand}</option>
                   ))}
                 </select>
               </div>
 
 
               <div className="col-md-3">
-                <label className="form-label small text-muted fw-bold">Category</label>
+                <label className="form-label small text-muted fw-bold">{t('products.category')}</label>
                 <select 
                   className="form-select"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
                   {uniqueCategories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
+                    <option key={cat} value={cat}>{cat === 'All' ? t('products.allOption') : cat}</option>
                   ))}
                 </select>
               </div>
@@ -127,12 +129,12 @@ const Products = () => {
             <div className="mb-3">
               <i className="fa-solid fa-search fa-3x text-muted opacity-25"></i>
             </div>
-            <h5 className="text-muted">No products found matching filters.</h5>
+            <h5 className="text-muted">{t('products.noMatches')}</h5>
             <button 
               className="btn btn-outline-success mt-3"
               onClick={() => {setSearchTerm(""); setSelectedBrand("All"); setSelectedCategory("All")}}
             >
-              Reset Filters
+              {t('products.resetFilters')}
             </button>
           </div>
           ) }

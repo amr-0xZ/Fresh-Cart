@@ -5,12 +5,15 @@ import { toast } from "react-toastify";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
+import { useTranslation } from 'react-i18next';
 
 
-const Login = () => {
+export default function Login() {
   let { setAuthed } = useContext(authContext);
   let [loading, setLoading] = useState(false)
   const navegate = useNavigate();
+  const {t} = useTranslation()
+
   const validate = Yup.object().shape({
     email: Yup.string().required().email(),
     password: Yup.string()
@@ -55,9 +58,9 @@ const Login = () => {
   return (
     <div className="min-vh-100">
       <div className="w-75 mx-auto my-5 text-center">
-        <h2>Login To Your Account:</h2>
+        <h2>{t('auth.loginTitle')}</h2>
         <form className="mt-5 p-5 shadow text-start" style={{borderRadius: 10}} action="" onSubmit={register.handleSubmit}>
-          <label htmlFor="Email">Email:</label>
+          <label htmlFor="Email">{t('auth.email')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -77,7 +80,7 @@ const Login = () => {
             ""
           )}
 
-          <label htmlFor="Password">Password:</label>
+          <label htmlFor="Password">{t('auth.password')}:</label>
           <input
             onChange={register.handleChange}
             onBlur={register.handleBlur}
@@ -106,14 +109,14 @@ const Login = () => {
             {loading? (
               <i className="fa-solid fa-spinner"></i>
             ) : (
-              "Login"
+              t('buttons.login')
             )}
           </button>
 
           <div className="text-center">
-            <p className="d-inline-block my-auto"><Link to={"/guest/resetpass"}><span className="text-main">Forget Password?</span></Link></p>
+            <p className="d-inline-block my-auto"><Link to={"/guest/resetpass"}><span className="text-main">{t('auth.forgotPassword')}</span></Link></p>
             <span className="d-inline-block text-black-50 mx-2">{"|"}</span>
-            <p className="d-inline-block my-auto"><Link to={"/guest/signup"}> <span className="text-main">Create account?</span></Link></p>
+            <p className="d-inline-block my-auto"><Link to={"/guest/signup"}> <span className="text-main">{t('buttons.signUp')}</span></Link></p>
           </div>
 
           </div>
@@ -124,6 +127,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

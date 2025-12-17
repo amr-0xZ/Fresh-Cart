@@ -1,4 +1,5 @@
 import { React, useContext, useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +13,7 @@ const Order = () => {
   let { id } = useParams();
   let navigate = useNavigate()
   let [loading, setLoading] = useState(false)
+  const { t } = useTranslation()
 
   async function cashPay(params, id) {
     setLoading(true)
@@ -79,9 +81,9 @@ const Order = () => {
     <div className="min-vh-100">
       {noAddresses? (
         <div className="container w-75 my-5">
-        <h2>Enter your order details:</h2>
+        <h2>{t('order.enterDetails')}</h2>
         <form className="mt-4" action="" onSubmit={register.handleSubmit}>
-          <label htmlFor="phone">Phone:</label>
+          <label htmlFor="phone">{t('order.phone')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.phone && register.touched.phone
@@ -100,7 +102,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city">{t('order.city')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.city && register.touched.city ? "is-invalid" : ""
@@ -117,7 +119,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="details">Details:</label>
+          <label htmlFor="details">{t('order.details')}</label>
           <textarea
             className={`form-control mb-3 ${
               register.errors.details && register.touched.details
@@ -135,7 +137,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="method">Payment method:</label>
+          <label htmlFor="method">{t('order.paymentMethod')}</label>
           <div role="group" className="d-block my-3 ms-4">
             <label>
               <input
@@ -146,11 +148,11 @@ const Order = () => {
                 value="cash"
                 onChange={register.handleChange}
               />
-              Cash on delevery
+              {t('order.cash')}
             </label>
           </div>
           <div className="d-block my-3 ms-4">
-            <label>
+              <label>
               <input
                 className="me-2"
                 type="radio"
@@ -159,7 +161,7 @@ const Order = () => {
                 value="visa"
                 onChange={register.handleChange}
               />
-              Online Visa
+              {t('order.visa')}
             </label>
           </div>
           <button
@@ -170,7 +172,7 @@ const Order = () => {
           {loading? (
             <i className="fa-solid fa-spinner"></i>
           ) : (
-            "Order"
+            t('buttons.order')
           )}
           </button>
         </form>
@@ -181,9 +183,9 @@ const Order = () => {
         <div className="d-flex align-items-center justify-content-between">
           <div className=" w-75 my-5 p-3">
             <div className="container w-75 ">
-        <h2>Enter your order details:</h2>
+        <h2>{t('order.enterDetails')}</h2>
         <form className="mt-4" action="" onSubmit={register.handleSubmit}>
-          <label htmlFor="phone">Phone:</label>
+          <label htmlFor="phone">{t('order.phone')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.phone && register.touched.phone
@@ -202,7 +204,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city">{t('order.city')}</label>
           <input
             className={`form-control mb-3 ${
               register.errors.city && register.touched.city ? "is-invalid" : ""
@@ -219,7 +221,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="details">Details:</label>
+          <label htmlFor="details">{t('order.details')}</label>
           <textarea
             className={`form-control mb-3 ${
               register.errors.details && register.touched.details
@@ -237,7 +239,7 @@ const Order = () => {
           ) : (
             ""
           )}
-          <label htmlFor="method">Payment method:</label>
+          <label htmlFor="method">{t('order.paymentMethod')}</label>
           <div role="group" className="d-block my-3 ms-4">
             <label>
               <input
@@ -248,11 +250,11 @@ const Order = () => {
                 value="cash"
                 onChange={register.handleChange}
               />
-              Cash on delevery
+              {t('order.cash')}
             </label>
           </div>
           <div className="d-block my-3 ms-4">
-            <label>
+              <label>
               <input
                 className="me-2"
                 type="radio"
@@ -261,7 +263,7 @@ const Order = () => {
                 value="visa"
                 onChange={register.handleChange}
               />
-              Online Visa
+              {t('order.visa')}
             </label>
           </div>
           <button
@@ -272,25 +274,25 @@ const Order = () => {
           {loading? (
             <i className="fa-solid fa-spinner"></i>
           ) : (
-            "Order"
+            t('buttons.order')
           )}
           </button>
         </form>
       </div>
           </div>
           <div className=" w-25 text-center me-3">
-            <h4>Saved Addresses</h4>
+            <h4>{t('order.savedAddresses')}</h4>
             {adresses.map((address)=>{
             return(
               <div key={address._id} style={{borderRadius: 10}} className='w-100 p-3 mt-3 border border-1 text-center'>
                 <h5>{address.name}</h5>
                 <div className='d-flex justify-content-between align-items-center mt-3'>
-                  <p>City: {address.city}</p>
+                  <p>{t('order.city')}: {address.city}</p>
                   <p>{address.details}</p>
                 </div>
                 <div className='d-flex justify-content-between align-items-center mt-2'>
-                  <p className='my-auto'>Phone: {address.phone}</p>
-                  <button className='btn fs text-white bg-main' onClick={()=>{useAddr(address)}}>Use</button>
+                  <p className='my-auto'>{t('order.phone')}: {address.phone}</p>
+                  <button className='btn fs text-white bg-main' onClick={()=>{useAddr(address)}}>{t('order.use')}</button>
                 </div>
               </div>
             )

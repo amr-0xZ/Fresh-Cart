@@ -3,11 +3,13 @@ import axios from "axios";
 import { PropagateLoader } from "react-spinners";
 import { authContext } from "../../Contexts/AuthContext";
 import Categoriey from "./Categoriey";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   let [brands, setBrands] = useState([])
   let [categories, setCategories] = useState([])
   let [loading, setLoading] = useState(true)
+  const {t} = useTranslation()
 
   function getBrands(){
     return axios.get('https://ecommerce.routemisr.com/api/v1/brands').then(({data})=>{
@@ -44,7 +46,7 @@ const Home = () => {
   return (
   <div className="min-vh-100">
     <div className="container py-5 text-center">
-      <h3 className="mb-5 mt-4 fw-bold">Shop by Category</h3>
+      <h3 className="mb-5 mt-4 fw-bold">{t('home.shopByCategory')}</h3>
       
       {/* THE GRID LAYOUT:
          row-cols-2:      2 items per row on Mobile
@@ -60,7 +62,7 @@ const Home = () => {
 
       </div>
     <div className="container py-5">
-      <h3 className="mb-4 mt-5 text-center">Our Trusted Brands</h3>
+      <h3 className="mb-4 mt-5 text-center">{t('home.trustedBrands')}</h3>
 
       {/* --- SLIDER CONTAINER --- */}
       <div className="slider-container">
