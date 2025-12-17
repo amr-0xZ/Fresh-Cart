@@ -15,10 +15,10 @@ export default function Login() {
   const {t} = useTranslation()
 
   const validate = Yup.object().shape({
-    email: Yup.string().required().email(),
+    email: Yup.string().required(t('forms.required')).email(t('forms.email')),
     password: Yup.string()
-      .matches(/^[A-Z][a-zA-Z0-9]{6,}$/, "Invalid Password")
-      .required(),
+      .matches(/^[A-Z][a-zA-Z0-9]{6,}$/, t('forms.inPass'))
+      .required(t('forms.required')),
   });
 
   const register = useFormik({

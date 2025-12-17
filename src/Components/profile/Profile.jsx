@@ -27,19 +27,19 @@ const Profile = () => {
 
 
   const validate = Yup.object().shape({
-      name: Yup.string().required().max(15),
-      phone: Yup.string().required().min(11).max(11),
+      name: Yup.string().required(t('forms.required')).max(15,t('forms.max',{num: 15})),
+      phone: Yup.string().required(t('forms.required')).matches(/^\d+$/, t('forms.phone')).min(11,t('forms.min',{num: 11})).max(11,t('forms.max',{num: 11})),
       city: Yup.string()
-        .min(5, "Must be at least 5 characters long.")
-        .max(15, "Cannot exceed 15 characters.")
-        .required()
-        .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, "Contains invalid characters."),
+        .min(5, t('forms.min',{num: 5}))
+        .max(15,t('forms.max',{num: 15}))
+        .required(t('forms.required'))
+        .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, t('forms.city')),
       details: Yup.string()
-        .required("This field is required.")
-        .min(5, "Must be at least 5 characters long.")
-        .max(500, "Cannot exceed 500 characters.")
-        .trim("Leading and trailing spaces are not allowed.")
-        .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, "Contains invalid characters.")
+        .required(t('forms.required'))
+        .trim(t('forms.trim'))
+        .min(5, t('forms.min',{num: 5}))
+        .max(40, t('forms.max',{num: 40}))
+        .matches(/^[a-zA-Z0-9\u0600-\u06FF\s.,!?'"-]*$/, t('forms.detailes'))
     });
 
 

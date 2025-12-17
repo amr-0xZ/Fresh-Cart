@@ -8,19 +8,20 @@ import { useTranslation } from 'react-i18next';
 
 const Signup = () => {
   const navegate = useNavigate();
+  const { t } = useTranslation();
   let [loading, setLoading] = useState(false)
   const validate = Yup.object().shape({
-    name: Yup.string().min(3).max(20).required(),
-    email: Yup.string().required().email(),
+    name: Yup.string().min(3,t('forms.min',{num: '3'})).max(20,t('forms.max',{num: 20})).required(t('forms.required')),
+    email: Yup.string().required(t('forms.required')).email(t('forms.email')),
     password: Yup.string()
       .matches(
         /^[A-Z][a-zA-Z0-9]{6,}$/,
-        "The password must: Start with capital letter ,  7 characters long at least , Ends with a dolar sign $"
+        t('forms.password')
       )
-      .required(),
+      .required(t('forms.required')),
     rePassword: Yup.string()
-      .oneOf([Yup.ref("password")], "rePassword and password must be the same")
-      .required(),
+      .oneOf([Yup.ref("password")], t('forms.repassword'))
+      .required(t('forms.required')),
   });
 
   const register = useFormik({
@@ -52,7 +53,7 @@ const Signup = () => {
         setLoading(false)
       });
   }
-  const { t } = useTranslation();
+  
   return (
     <div className="min-vh-100">
       <div className="w-75 mx-auto my-5 text-center">

@@ -1,98 +1,68 @@
 # Fresh-Cart
 
-Fresh-Cart is a React (Vite) e‑commerce UI template focused on clarity and developer experience. It provides product listing, product details, cart & wishlist, authentication flows and basic protected routing — useful as a starter for small storefronts or UI demos.
+Fresh-Cart is a polished React + Vite e‑commerce UI starter built to showcase frontend engineering skills. It demonstrates real-world features such as product listing, product details, cart & wishlist flows, authentication, protected routes, server-state caching, localization (English & Arabic), and user-friendly notifications.
 
-## Features
+**Live demo:** (replace with your demo URL if available)
 
-- Product listing with data fetched from an API
-- Product details page
-- Shopping cart: add / remove / update items (context-driven)
-- Wishlist page
-- Authentication: signup & login
-- Protected routes for authenticated areas
-- Reusable layouts: MainLayout (authenticated) and AuthLayout (public)
-- Global state using React Contexts (AuthContext, CartContext)
-- React Query for server state & caching
-- Toast notifications with react-toastify
-- Responsive UI using Bootstrap
+## **Features**
+- **Product catalog:** Paginated product listing, search, brand/category filters.
+- **Product details:** Full product information, ratings, reviews and add-to-cart / add-to-wishlist actions.
+- **Shopping cart:** Add, update quantity, remove items, and proceed to order creation.
+- **Wishlist:** Save products to a personal wishlist and move to cart.
+- **Authentication:** Signup, login and a forget-password flow with verification code and reset.
+- **Protected routes:** Authenticated areas (profile, orders) are protected using a wrapper route.
+- **Orders & profile:** View orders, order details and manage saved addresses.
+- **Localization (i18n):** English and Arabic translations with keys in `src/locales` and `react-i18next` integration.
+- **Toasts & UX:** User-friendly notifications using `react-toastify` and consistent UI elements with Bootstrap.
 
-## Tech stack
+## **Tech Stack & Tools**
+- **Framework:** React (Vite) — fast development and HMR.
+- **Routing:** `react-router-dom` with `createBrowserRouter` and nested routes.
+- **State & Data:** React Contexts (`AuthContext`, `CartContext`) + `@tanstack/react-query` for server-state and caching.
+- **HTTP client:** `axios` for API communication.
+- **Forms & validation:** `formik` and `yup`.
+- **Localization:** `react-i18next` + `i18next` + `i18next-browser-languagedetector`.
+- **Styling:** `bootstrap` and custom CSS (`src/index.css` / `src/App.css`).
+- **Notifications:** `react-toastify`.
+- **Icons:** Font Awesome (`@fortawesome/fontawesome-free`).
 
-- React + Vite
-- React Router v6+ (createBrowserRouter / RouterProvider)
-- @tanstack/react-query (v5+)
-- Axios for API requests
-- Bootstrap 5
-- react-toastify
-- react-spinners
-- Font Awesome (CSS or react-fontawesome)
+Dependencies are listed in `package.json`.
 
-## Quick start
+## **Files & Structure (high level)**
+- `src/App.jsx` — Router and routes definition
+- `src/main.jsx` — App bootstrap (providers, CSS, defensive runtime guard)
+- `src/Components/` — Feature components (home, products, productDetails, cart, wishlist, auth flows, orders, profile, etc.)
+- `src/Contexts/` — `AuthContext.jsx`, `CartContext.jsx`
+- `src/locales/en.json` & `src/locales/ar.json` — translation resources
+- `src/i18n/` (if present) — i18n initializer
 
-From the project root (Windows):
-
-1. Install dependencies
+## **Getting started (developer)**
+1. Clone the repo and install dependencies:
 
 ```bash
+git clone <repo-url>
+cd Fresh-Cart
 npm install
 ```
 
-2. Run dev server
+2. Start the dev server:
 
 ```bash
 npm run dev
 ```
 
-3. Build for production
+3. Build for production:
 
 ```bash
 npm run build
 ```
 
-4. Preview production build
+4. Preview production build:
 
 ```bash
 npm run preview
 ```
 
-See `package.json` for all available scripts.
+## **Environment & API**
+- The project uses a third-party demo API for products (see code for exact endpoints under `axios` calls). Replace the API base URL or proxy requests to your backend for a production deployment.
 
-## Project structure (important files / folders)
-
-- src/
-  - App.jsx — router setup and top-level providers
-  - main.jsx — app bootstrap (React Query provider, CSS imports)
-  - Components/
-    - products/Products.jsx — product listing
-    - productDetails/ProductDetails.jsx — product details page
-    - cart/Cart.jsx
-    - wishlist/WishList.jsx
-    - login/Login.jsx, signup/Signup.jsx
-    - protectedRoutes/ProtectedRoutes.jsx
-  - Layouts/
-    - MainLayout.jsx
-    - AuthLayout.jsx
-  - Contexts/
-    - AuthContext.jsx
-    - CartContext.jsx
-  - index.css — global styles
-
-## Routing notes
-
-- MainLayout routes (protected) and AuthLayout routes (guest) are configured in `App.jsx`.
-- Example routes:
-  - `/` or `/home` — Home
-  - `/products` — Products list
-  - `/product/:id` — Product details (adjust depending on route nesting)
-  - `/cart` — Cart
-  - `/wishlist` — Wishlist
-  - `/guest/login` or `/guest/signup` — Auth pages (depending on route base)
-
-If ProductDetails does not render inside a parent page, ensure:
-
-- The parent route renders an `<Outlet />` if ProductDetails is defined as a nested child.
-- Or place the product details route as a sibling under the MainLayout to render at `/product/:id`.
-
-## Environment / API
-
-- This template fetches products from `https://ecommerce.routemisr.com/api/v1/products` (example). Replace endpoints with your backend or mock service as needed.

@@ -30,9 +30,9 @@ function App() {
     document.documentElement.lang = i18n.language;
     const bootStrapLink = document.getElementById('bootstrap-css')
     if(dir==='rtl'){
-      bootStrapLink.href = '/node_modules/bootstrap/dist/css/bootstrap.rtl.min.css'
+      bootStrapLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css'
     }else{
-      bootStrapLink.href = '/node_modules/bootstrap/dist/css/bootstrap.min.css'
+      bootStrapLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
     }
   },[i18n.language])
 

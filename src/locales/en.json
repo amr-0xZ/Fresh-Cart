@@ -159,5 +159,18 @@
     "category": "Category:",
     "qty": "Qty:",
     "phone": "Phone:"
+  },
+  "forms": {
+    "required": "This field is required",
+    "max": "Do not write more than {{num}} chars",
+    "min": "Do not write less than {{num}} chars",
+    "email": "Enter a valid email",
+    "password": "The password must: Start with capital letter ,  7 characters long at least",
+    "repassword": "Passwords don't match",
+    "inPass": "Enter a valid password",
+    "city": "Enter a valid city name",
+    "detailes": "Write only letters and numbers",
+    "phone": "Use numbers only",
+    "trim": "Leading and trailing spaces are not allowed."
   }
 }
