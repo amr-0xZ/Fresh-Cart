@@ -2,7 +2,7 @@
 
 Fresh-Cart is a polished React + Vite e‑commerce UI starter built to showcase frontend engineering skills. It demonstrates real-world features such as product listing, product details, cart & wishlist flows, authentication, protected routes, server-state caching, localization (English & Arabic), and user-friendly notifications.
 
-**Live demo:** (replace with your demo URL if available)
+**Live demo:** [(See Demo)](https://fresh-cart-demo-orcin.vercel.app/)
 
 ## **Features**
 - **Product catalog:** Paginated product listing, search, brand/category filters.
