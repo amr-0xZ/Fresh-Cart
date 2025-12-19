@@ -15,8 +15,6 @@ const AuthContext = ({ children }) => {
         headers:{token: localStorage.getItem("token")}
       }
     ).then(({data})=>{
-      console.log(data);
-      
       setAdresses(data.data)
       return data
     }).catch((err)=>{
@@ -31,13 +29,10 @@ const AuthContext = ({ children }) => {
         headers:{token: localStorage.getItem("token")}
       }
     ).then(({data})=>{
-      console.log(data);
-      
       getAdresses()
       return data
     }).catch((err)=>{
       console.log(err);
-      
       return err
     })
   }
@@ -57,13 +52,10 @@ const AuthContext = ({ children }) => {
   }
 
   function editUser(values){
-    console.log(values);
-    
     return axios.put('https://ecommerce.routemisr.com/api/v1/users/updateMe/',
       values,
       {headers: {token: localStorage.getItem("token")}}
     ).then(({data})=>{
-      
       return data
     }).catch(({error})=>{
       return error

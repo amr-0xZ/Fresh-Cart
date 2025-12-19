@@ -67,7 +67,6 @@ const Order = () => {
   });
 
   function useAddr(address){
-      console.log(address);
       register.setFieldValue('phone',address.phone)
       register.setFieldValue('city',address.city)
       register.setFieldValue('details',address.details)

@@ -95,7 +95,6 @@ const CartContext = ({ children }) => {
         { headers: { token: localStorage.getItem("token") } }
       )
       .then(({ data }) => {
-        console.log(data);
         if (data.status == "success") {
           window.location.href = data.session.url
         }
@@ -113,7 +112,6 @@ const CartContext = ({ children }) => {
           { headers: { token: localStorage.getItem("token") } }
         )
         .then(({ data }) => {
-          console.log(data);
           if (data.status == "success") {
             fitchCartCount();
             toast.success("We received you order!");
@@ -141,7 +139,6 @@ const CartContext = ({ children }) => {
           token: localStorage.getItem("token")
         }}
       ).then(({data})=>{
-        console.log(data);
         setWishlist(data.data)
         setWishlistCount(data.count)
         return data

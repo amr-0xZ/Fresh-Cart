@@ -78,8 +78,6 @@ const Profile = () => {
       let response = await editUser(data)
       setLoading("")
       if(response.message=="success"){
-        console.log(response);
-        
         localStorage.setItem("user", JSON.stringify(response.user))
         toast.success(t('profile.yourNameUpdated'))
         setEdit(false)
@@ -102,8 +100,6 @@ const Profile = () => {
 
   useEffect(()=>{
     getAdresses()
-    console.log(adresses);
-    
   },[])
   
   return (

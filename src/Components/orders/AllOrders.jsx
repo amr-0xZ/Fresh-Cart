@@ -17,7 +17,6 @@ const AllOrders = () => {
 
   async function getOrders(id) {
     let data = await userOrders(id)
-    console.log(data);
     if(data){
       setLoading(false)
       setOrders(data)
@@ -25,7 +24,6 @@ const AllOrders = () => {
   }
 
   useEffect(()=>{
-    console.log(userData.id)
     getOrders(userData.id)
   },[])
 

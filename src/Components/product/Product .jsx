@@ -25,7 +25,6 @@ const Product = ({ product }) => {
   async function addProductToCart(id) {
     setLoading(true)
     let data = await addToCart(id);
-    console.log(data);
     setLoading(false)
     toast.success(
       t('messages.addedToCart', { title: product.title.split(" ").slice(0, 2).join(" ") })
@@ -35,7 +34,6 @@ const Product = ({ product }) => {
   async function addProductToWish(id) {
     setLiked(!liked)
     let data = await addToWishlist(id);
-    console.log(data);
     toast.success(
       t('messages.addedToWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );
@@ -44,7 +42,6 @@ const Product = ({ product }) => {
   async function remProductFromWish(id) {
     setLiked(!liked)
     let data = await remFromWishlist(id);
-    console.log(data);
     toast.success(
       t('messages.removedFromWishlist', { title: product.title.split(" ").slice(0, 2).join(" ") })
     );

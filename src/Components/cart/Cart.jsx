@@ -15,7 +15,6 @@ const Cart = () => {
 
   async function getCartData() {
     let data = await fitchCartCount();
-    console.log(data);
   }
 
   async function emptyCart() {

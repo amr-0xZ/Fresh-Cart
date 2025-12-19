@@ -39,7 +39,6 @@ const ProductDetails = () => {
   async function addProductToCart(id) {
     setAddLoading(true)
     let data = await addToCart(id);
-    console.log(data);
     setAddLoading(false)
     toast.success(
       t('messages.addedToCart', { title: product.title.split(" ").slice(0, 2).join(" ") })

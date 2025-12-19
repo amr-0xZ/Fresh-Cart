@@ -25,7 +25,6 @@ const ProtectedRoutes = ({ children }) => {
           if(data.message=="verified"){
             setAuthed(true);
             setUserData(data.decoded);
-            console.log(data);
             setIsLoading(false);
             return data
           }

@@ -38,9 +38,6 @@ export default function Login() {
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
       .then((data) => {
         if (data.status == 200) {
-          // console.log(data.data.token);
-          console.log(data);
-
           localStorage.setItem("token", data.data.token);
           localStorage.setItem("user", JSON.stringify(data.data.user));
           setAuthed(true);
@@ -49,7 +46,6 @@ export default function Login() {
         }
       })
       .catch((err) => {
-        // console.log(err);
         toast.error(err.response.data.message);
         setLoading(false)
       });

@@ -60,8 +60,6 @@ const ForgetPassword = () => {
                 newPassword: newPass
             }
             ).then(({data})=>{
-                console.log(data);
-            
                 if(data.token){
                 setLoading(false)
                 setVcode("")
@@ -71,8 +69,6 @@ const ForgetPassword = () => {
                 navegate("/guest/login")
             }
         }).catch(({response})=>{
-            console.log(response);
-            
             setLoading(false)
             toast.error(t('messages.resetCodeExpired'))
             setVcode("")

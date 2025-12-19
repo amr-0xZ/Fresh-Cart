@@ -29,8 +29,6 @@ const CartItem = ({ product, getCartData }) => {
     let data = await removeProduct(productId);
     await getCartData();
     setLoading("")
-    console.log(data);
-
     toast.success(t('cartItem.removedFromCart',{title: product.product.title}));
   }
 

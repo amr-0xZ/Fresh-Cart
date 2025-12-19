@@ -14,7 +14,6 @@ const WishList = () => {
 
   async function getWishlistData() {
     let data = await getWishlist();
-    console.log(data);
     if(data){
       setLoading(false)
     }
@@ -25,8 +24,6 @@ const WishList = () => {
   },[])
 
   useEffect(()=>{
-    console.log(wishlist);
-    
     if(wishlist.length>0){
       setEmpty(false)
     }else{
