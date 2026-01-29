@@ -13,7 +13,7 @@
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@popperjs/core": "^2.11.8",
     "@tanstack/react-query": "^5.90.5",
-    "axios": "^1.12.2",
+    "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "formik": "^2.4.6",
     "i18next": "^25.7.3",
